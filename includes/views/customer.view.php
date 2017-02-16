@@ -114,7 +114,7 @@ include "includes/views/layout/header.php";
 //            echo '<tr><td class="edit"><a href="edit_customer.php?id='.$customer['id'].'"><input type="button" value="Edit"/></a></td>';
             echo '<tr><td class="edit"><button data-toggle="modal" data-target="#editCustomer" class="btn btn-success col-xs-12 btn-narrow">Edit Customer</button></td>';
             if (getuserfield('role') == 'admin'){
-                echo '<td class="edit"><a href="del_customer.php?id=' .$customer['id'].'" onclick="return confirm(\'Really Delete?\');"><button class="btn btn-success col-xs-12 btn-narrow">Delete</button></a></td>';}
+                echo '<td class="edit"><a href="del_customer?id=' .$customer['id'].'" onclick="return confirm(\'Really Delete?\');"><button class="btn btn-success col-xs-12 btn-narrow">Delete</button></a></td>';}
             echo "</tr>";
             echo '</table>';
 

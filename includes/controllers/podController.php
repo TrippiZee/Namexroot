@@ -58,4 +58,14 @@ class PodController{
 
     }
 
+    public function delPod(){
+
+        $model = new Pod();
+        if (isset($_GET['id'])){
+            $id=$_GET['id'];
+            $model->deleteRecord($id);
+        }
+    }
+
+
 }

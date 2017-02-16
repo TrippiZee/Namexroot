@@ -3,6 +3,7 @@
 namespace Includes\Models;
 
 use PDO;
+use Includes\App;
 
 class Waybills{
 
@@ -37,5 +38,14 @@ class Waybills{
 
         return array($statement->fetchAll(PDO::FETCH_CLASS),$filter->rowCount());
     }
+    public function deleteRecord($id){
+
+        $pdo = App::get('pdo');
+        $statement = $pdo->prepare("DELETE FROM manifest_details WHERE id = {$id} LIMIT 1");
+        $statement->execute();
+        redirect_to('manifest');
+
+    }
+
 
 }

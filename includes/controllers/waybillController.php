@@ -63,4 +63,14 @@ class WaybillController{
         echo json_encode($json_data);
 
     }
+
+    public function delWaybill(){
+
+        $model = new Waybills();
+        if (isset($_GET['id'])){
+            $id=$_GET['id'];
+            $model->deleteRecord($id);
+        }
+    }
+
 }

@@ -59,9 +59,8 @@ include "includes/views/layout/header.php";
             echo '<td>'.$manifest['reg_no'].'</td></tr>';
             if ($manifest['finalised'] == '0') {
             echo '<tr><td class="edit"><button data-toggle="modal" data-target="#editManifest" class="btn btn-success col-xs-12 btn-narrow">Edit Manifest</button></td>';
-//            echo '<tr><td class="edit"><a href="../../edit_manifest.php?id=' .$manifest['id'].'"><input type="button" value="Edit"/></a></td>';
         if (getuserfield('role') == 'admin'){
-            echo '<td class="edit"><a href="del_manifest.php?id=' .$manifest['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';
+            echo '<td class="edit"><a href="del_manifest?id=' .$manifest['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" class="btn btn-success col-xs-12 btn-narrow" value="Delete"/></a></td>';
         }
             echo "</tr>";}
 
@@ -88,7 +87,7 @@ include "includes/views/layout/header.php";
             $economy = mysqli_fetch_array($sum_economy);
 
             echo '<table class="table dataTable default" >';
-            echo '<tr><td style="width:470px"></td><td><a href="../../new_waybill.php?id=' .$manifest_id.'"><input type="button" value="Add New Waybill"/></a> </td></tr>';
+            echo '<tr><td style="width:470px"></td><td><a href="new_waybill?id=' .$manifest_id.'"><input type="button" value="Add New Waybill"/></a> </td></tr>';
             echo '<tr><br /></tr>';
             echo "</table></tr>";
             ?>
@@ -109,9 +108,9 @@ include "includes/views/layout/header.php";
                 echo '<td>'.$data['type'].'</td>';
                 echo '<td>'.$data['remarks'].'</td>';
                 echo '<td style="visibility: hidden">'.$data['date'].'</td></tr>';
-                echo '<tr><td class="edit"><a href="../../edit_waybill.php?id=' .$data['id'].'& shipper='.$data['shipper'].'& type='.$data['type'].'"><input type="button" value="Edit"/></a></td>';
+                echo '<tr><td class="edit"><a href="edit_waybill?id=' .$data['id'].'& shipper='.$data['shipper'].'& type='.$data['type'].'"><input type="button" value="Edit"/></a></td>';
                 if (getuserfield('role') == 'admin'){
-                    echo '<td class="edit"><a href="del_waybill.php?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';}
+                    echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" class="btn btn-success col-xs-12 btn-narrow" value="Delete"/></a></td>';}
                 echo '<td></td>';
                 echo '<td></td>';
                 echo '<td></td>';

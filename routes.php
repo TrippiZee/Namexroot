@@ -10,7 +10,13 @@ $router->get('costing','CustomerController@allCustomers');
 $router->get('reports','CustomerController@allCustomers');
 $router->get('user','UserController@allUsers');
 $router->get('logout','CustomerController@allCustomers');
-$router->get('print_manifest','CustomerController@allCustomers');
+$router->get('print_manifest','ManifestController@printManifest');
+
+$router->get('del_customer','CustomerController@delCustomer');
+$router->get('del_manifest','ManifestController@delManifest');
+$router->get('del_waybill','WaybillController@delWaybill');
+$router->get('del_pod','PodController@delPod');
+$router->get('del_user','UserController@delUser');
 
 $router->post('customer','CustomerController@allCustomers');
 $router->post('manifest','ManifestController@allManifests');

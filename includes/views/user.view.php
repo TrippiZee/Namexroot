@@ -89,7 +89,7 @@ include "layout/header.php";
             echo '<td>'.$user['role'].'</td></tr>';
             echo '<tr><td class="edit"><button data-toggle="modal" data-target="#editUser" class="btn btn-success col-xs-12 btn-narrow">Edit User</button></td>';
 //            echo '<tr><td class="edit"><a href="../../edit_user.php?id=' .$user['id'].'"><input type="button" value="Edit"/></a></td>';
-                echo '<td class="edit"><a href="del_user.php?id=' .$user['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';
+                echo '<td class="edit"><a href="del_user?id=' .$user['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" class="btn btn-success col-xs-12 btn-narrow" value="Delete"/></a></td>';
             echo "</tr>";
             echo "</table>";
         }

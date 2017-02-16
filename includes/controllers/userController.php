@@ -59,4 +59,14 @@ class UserController{
         echo json_encode($json_data);
 
     }
+
+    public function delUser(){
+
+        $model = new User();
+        if (isset($_GET['id'])){
+            $id=$_GET['id'];
+            $model->deleteRecord($id);
+        }
+    }
+
 }

@@ -1,15 +1,8 @@
 <?php
 
-//namespace Includes;
-//
-//use Includes\FPDF;
 require('fpdf.php');
-//require("core.php");
-//require("db_connection.php");
 
-
-
-if (isset($_GET['print_id'])){
+if (isset($_GET['print_invoice'])){
     $id=$_GET['print_id'];
 
     $query_result = manifest($id);
@@ -50,54 +43,54 @@ if (isset($_GET['print_id'])){
 
     class PDF extends FPDF {
 // Page header
-    function Header()
-    {
-        $basePath = __DIR__.'/../';
+        function Header()
+        {
+            $basePath = __DIR__.'/../';
 
-        // Logo
-        $this->Image($basePath.'public/img/header.jpg',50,6,100);
-        // Arial bold 15
-        $this->SetFont('Arial','B',15);
-        // Move to the right
-        $this->Cell(80);
-        // Title
-        $this->Ln(20);
-    }
+            // Logo
+            $this->Image($basePath.'public/img/header.jpg',50,6,100);
+            // Arial bold 15
+            $this->SetFont('Arial','B',15);
+            // Move to the right
+            $this->Cell(80);
+            // Title
+            $this->Ln(20);
+        }
 
 // Page footer
-    function Footer()
-    {
-        // Position at 1.5 cm from bottom
-        $this->SetY(-15);
-        // Arial italic 8
-        $this->SetFont('Arial','I',8);
-        // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-    }
+        function Footer()
+        {
+            // Position at 1.5 cm from bottom
+            $this->SetY(-15);
+            // Arial italic 8
+            $this->SetFont('Arial','I',8);
+            // Page number
+            $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+        }
 
 
-    function waybill_heading($y)
-    {
-        $this->SetFont('Times', '', 12);
-        $this->SetY($y - 10);
-        $this->SetX(0);
-        $this->Cell(4, 6, ' ', 1, 0, 'C');
-        $this->SetX(4);
-        $this->Cell(21, 6, 'WAYBILL ', 1, 0, 'C');
-        $this->SetX(25);
-        $this->Cell(55, 6, 'SHIPPER', 1, 0, 'C');
-        $this->SetX(80);
-        $this->Cell(55, 6, 'CONSIGNEE', 1, 0, 'C');
-        $this->SetX(135);
-        $this->Cell(15, 6, 'QTY', 1, 0, 'C');
-        $this->SetX(150);
-        $this->Cell(20, 6, 'WEIGHT', 1, 0, 'C');
-        $this->SetX(170);
-        $this->Cell(15, 6, 'TYPE', 1, 0, 'C');
-        $this->SetX(185);
-        $this->Cell(25, 6, 'REMARKS', 1, 0, 'C');
+        function waybill_heading($y)
+        {
+            $this->SetFont('Times', '', 12);
+            $this->SetY($y - 10);
+            $this->SetX(0);
+            $this->Cell(4, 6, ' ', 1, 0, 'C');
+            $this->SetX(4);
+            $this->Cell(21, 6, 'WAYBILL ', 1, 0, 'C');
+            $this->SetX(25);
+            $this->Cell(55, 6, 'SHIPPER', 1, 0, 'C');
+            $this->SetX(80);
+            $this->Cell(55, 6, 'CONSIGNEE', 1, 0, 'C');
+            $this->SetX(135);
+            $this->Cell(15, 6, 'QTY', 1, 0, 'C');
+            $this->SetX(150);
+            $this->Cell(20, 6, 'WEIGHT', 1, 0, 'C');
+            $this->SetX(170);
+            $this->Cell(15, 6, 'TYPE', 1, 0, 'C');
+            $this->SetX(185);
+            $this->Cell(25, 6, 'REMARKS', 1, 0, 'C');
+        }
     }
-}
 
     $row_height = 4;
     $y_axis = 60;

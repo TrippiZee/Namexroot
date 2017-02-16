@@ -55,4 +55,14 @@ class CustomerController {
 
         echo json_encode($json_data);
     }
+
+    public function delCustomer(){
+
+        $model = new Customers();
+        if (isset($_GET['id'])){
+            $id=$_GET['id'];
+            $model->deleteRecord($id);
+        }
+    }
+
 }

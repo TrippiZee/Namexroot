@@ -12,6 +12,11 @@ class ManifestController {
         return view('manifest',['connection'=>$connection]);
     }
 
+    public function printManifest(){
+        global $connection;
+        return pdf('print_manifest',['connection'=>$connection]);
+    }
+
     public function filterManifests()
     {
 
@@ -55,5 +60,14 @@ class ManifestController {
         );
 
         echo json_encode($json_data);
+    }
+
+    public function delManifest(){
+
+        $model = new Manifest();
+        if (isset($_GET['id'])){
+            $id=$_GET['id'];
+            $model->deleteRecord($id);
+        }
     }
 }
