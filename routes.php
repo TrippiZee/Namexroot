@@ -18,14 +18,14 @@ $router->get('del_waybill','WaybillController@delWaybill');
 $router->get('del_pod','PodController@delPod');
 $router->get('del_user','UserController@delUser');
 
-$router->post('customer','CustomerController@allCustomers');
-$router->post('manifest','ManifestController@allManifests');
-$router->post('waybill','WaybillController@allWaybills');
-$router->post('pod','PodController@allPods');
+$router->post('customer','CustomerController@addEditCustomer');
+$router->post('manifest','ManifestController@addEditManifest');
+$router->post('waybill','WaybillController@addEditWaybill');
+$router->post('pod','PodController@addEditPod');
 $router->post('tracking','CustomerController@allCustomers');
 $router->post('costing','CustomerController@allCustomers');
 $router->post('reports','CustomerController@allCustomers');
-$router->post('user','UserController@allUsers');
+$router->post('user','UserController@addEditUser');
 
 $router->post('ajaxCustomer','CustomerController@filterCustomers');
 $router->post('ajaxManifest','ManifestController@filterManifests');

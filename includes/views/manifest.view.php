@@ -13,33 +13,6 @@ include "includes/views/layout/header.php";
     <div class="col-sm-12">
 
         <?php
-        if (isset($_POST['editManifest'])) {
-
-            $number = $_POST['number'];
-            $date = $_POST['date'];
-            $driver = strtoupper($_POST['driver']);
-            $post_id = $_POST['id'];
-            $co_driver = strtoupper($_POST['co_driver']);
-            $caps_reg_no = strtoupper($_POST['reg_no']);
-            $reg_no = trim($caps_reg_no,"");
-
-            $update_query  = "UPDATE manifest SET ";
-            $update_query .= "manifest_no = '{$number}', ";
-            $update_query .= "date = '{$date}', ";
-            $update_query .= "driver = '{$driver}', ";
-            $update_query .= "co_driver = '{$co_driver}', ";
-            $update_query .= "reg_no = '{$reg_no}' ";
-            $update_query .= "WHERE id = '{$post_id}' ";
-            $update_query .= "LIMIT 1";
-            $result = mysqli_query($connection,$update_query);
-            if ($result && mysqli_affected_rows($connection) >= 0) {
-                // Success
-                redirect_to("manifest.php?id=".$post_id);
-            } else {
-                die("Subject update failed.".mysqli_error($connection));
-
-            }
-        }
 
         if (isset($_GET['id'])){
             $id=$_GET['id'];
@@ -58,9 +31,10 @@ include "includes/views/layout/header.php";
             echo '<td>'.$manifest['co_driver'].'</td>';
             echo '<td>'.$manifest['reg_no'].'</td></tr>';
             if ($manifest['finalised'] == '0') {
-            echo '<tr><td class="edit"><button data-toggle="modal" data-target="#editManifest" class="btn btn-success col-xs-12 btn-narrow">Edit Manifest</button></td>';
+//                echo '<tr><td class="edit"><button data-toggle="modal" data-target="#editManifest">Edit Manifest</button></td>';
+                echo '<tr><td class="edit"><a><input type="button" data-toggle="modal" data-target="#editManifest" value="Edit Manifest"/></a></td>';
         if (getuserfield('role') == 'admin'){
-            echo '<td class="edit"><a href="del_manifest?id=' .$manifest['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" class="btn btn-success col-xs-12 btn-narrow" value="Delete"/></a></td>';
+            echo '<td class="edit"><a href="del_manifest?id=' .$manifest['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';
         }
             echo "</tr>";}
 
@@ -87,10 +61,11 @@ include "includes/views/layout/header.php";
             $economy = mysqli_fetch_array($sum_economy);
 
             echo '<table class="table dataTable default" >';
-            echo '<tr><td style="width:470px"></td><td><a href="new_waybill?id=' .$manifest_id.'"><input type="button" value="Add New Waybill"/></a> </td></tr>';
+            echo '<tr><td style="width:37.5%"></td><td><a href="new_waybill?id=' .$manifest_id.'"><input type="button" class="btn btn-success col-xs-12 btn-narrow" value="Add New Waybill"/></a> </td><td style="width:37.5%"></td></tr>';
             echo '<tr><br /></tr>';
             echo "</table></tr>";
             ?>
+
         <div id="table">
             <?php
 
@@ -110,12 +85,13 @@ include "includes/views/layout/header.php";
                 echo '<td style="visibility: hidden">'.$data['date'].'</td></tr>';
                 echo '<tr><td class="edit"><a href="edit_waybill?id=' .$data['id'].'& shipper='.$data['shipper'].'& type='.$data['type'].'"><input type="button" value="Edit"/></a></td>';
                 if (getuserfield('role') == 'admin'){
-                    echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" class="btn btn-success col-xs-12 btn-narrow" value="Delete"/></a></td>';}
+                    echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';}
                 echo '<td></td>';
                 echo '<td></td>';
                 echo '<td></td>';
                 echo '<td></td>';
-                echo '<tr><td class="edit"><button data-toggle="modal" data-target="#createPOD" class="btn btn-success col-xs-12 btn-narrow">Create POD</button></td></tr>';
+                echo '<tr><td class="edit"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td></tr>';
+//                echo '<tr><td class="edit"><button data-toggle="modal" data-target="#createPOD" class="btn btn-success col-xs-12 btn-narrow">Create POD</button></td></tr>';
             }
 
             echo '<table class="table dataTable default">';
@@ -152,7 +128,6 @@ include "includes/views/layout/header.php";
                     </thead></table>';
          }
             require 'modals/manifest.modal.php';
-            require 'modals/waybill.modal.php';
 
             ?>
         </div>
