@@ -60,6 +60,16 @@ class UserController{
 
     }
 
+    public function addEditUser(){
+        $model = new User();
+
+        if(isset($_POST['addUser'])){
+            $model->addUser();
+        } elseif (isset($_POST['editUser'])){
+            $model->editUser();
+        }
+    }
+
     public function delUser(){
 
         $model = new User();

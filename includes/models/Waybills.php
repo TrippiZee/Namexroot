@@ -38,6 +38,27 @@ class Waybills{
 
         return array($statement->fetchAll(PDO::FETCH_CLASS),$filter->rowCount());
     }
+
+    public function createPod(){
+        $pdo = App::get('pdo');
+
+        $pod = $_POST['number'];
+        $date = $_POST['date'];
+        $shipper = strtoupper($_POST['shipper']);
+        $consignee = strtoupper($_POST['consignee']);
+        $qty = $_POST['qty'];
+        $type = strtoupper($_POST['type']);
+        $remarks = strtoupper($_POST['remarks']);
+        $weight = $_POST['weight'];
+        $deldate = $_POST['deldate'];
+        $signed = strtoupper($_POST['signed']);
+        $time = $_POST['time'];
+
+        $statement = $pdo->prepare("INSERT INTO pod (pod_no, date, shipper, consignee, qty, weight, type, remarks, delivery_date, signed_by, time) VALUES ('{$pod}', '{$date}', '{$shipper}', '{$consignee}', '{$qty}', '{$weight}', '{$type}', '{$remarks}', '{$deldate}', '{$signed}', '{$time}')");
+        $statement->execute();
+        redirect_to('pod?id='.$pdo->lastInsertId());
+    }
+
     public function deleteRecord($id){
 
         $pdo = App::get('pdo');

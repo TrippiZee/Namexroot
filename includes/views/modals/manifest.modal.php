@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="<?php echo htmlentities($manifest['date'])?>">
+                            <input type="text" class="form-control date" name="date" value="<?php echo htmlentities($manifest['date'])?>">
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Manifest Number</label>
                         <div class="col-sm-4">

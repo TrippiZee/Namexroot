@@ -6,41 +6,6 @@ include "layout/header.php";
         <div class="col-sm-12">
         <?php
 
-        if (isset($_POST['createPOD'])) {
-
-            $pod = $_POST['number'];
-            $date = $_POST['date'];
-            $shipper = strtoupper($_POST['shipper']);
-            $consignee = strtoupper($_POST['consignee']);
-            $qty = $_POST['qty'];
-            $type = strtoupper($_POST['type']);
-            $remarks = strtoupper($_POST['remarks']);
-            $weight = $_POST['weight'];
-            $deldate = $_POST['deldate'];
-            $signed = strtoupper($_POST['signed']);
-            $time = $_POST['time'];
-
-
-
-            $query  = "INSERT INTO pod (";
-            $query .= "  pod_no, date, shipper, consignee, qty, weight, type, remarks, delivery_date, signed_by, time";
-            $query .= ") VALUES (";
-            $query .= " '{$pod}', '{$date}', '{$shipper}', '{$consignee}', '{$qty}', '{$weight}', '{$type}', '{$remarks}', '{$deldate}', '{$signed}', '{$time}'";
-            $query .= ")";
-            $result = mysqli_query($connection, $query);
-
-            if ($result) {
-                // Success
-                redirect_to("pod?id=".mysqli_insert_id($connection));
-            } else {
-                // Failure
-                echo 'Failed';
-                die("Subject update failed.".mysqli_error($connection));
-
-            }
-
-        }
-
         $id = '';
         if (isset($_GET['id'])) {
             $id = $_GET['id'];

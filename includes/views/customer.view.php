@@ -22,7 +22,7 @@ include "includes/views/layout/header.php";
             $customer = mysqli_fetch_array($query_result);
 
             echo '<h2>Details:</h2>';
-            echo '<div class="table-responsive>"';
+//            echo '<div class="table-responsive>"';
             echo '<table class="table dataTable default">';
             echo "<tr><th>Name</th><th>Account Number</th><th>Address1</th><th>Address2</th><th>City</th><th>Country</th><th>Tel Code</th><th>Tel No</th><th>Fax Code</th><th>Fax No</th><th>Vat No</th></tr>";
             echo '<tr><td>'. $customer['comp_name']. '</td>';
@@ -43,7 +43,7 @@ include "includes/views/layout/header.php";
                 echo '<td class="edit"><a href="del_customer?id=' .$customer['id'].'" onclick="return confirm(\'Really Delete?\');"><button class="btn btn-success col-xs-12 btn-narrow">Delete</button></a></td>';}
             echo "</tr>";
             echo '</table>';
-            echo '</div>';
+//            echo '</div>';
 
         }
         else {

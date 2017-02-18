@@ -14,64 +14,6 @@ include "layout/header.php";
         <div class="col-sm-12">
 
         <?php
-//        $roles = user_role($pdo);
-
-        if (isset($_POST['addUser'])) {
-
-            $user_name = strtoupper($_POST['username']);
-            $password = strtoupper($_POST['password']);
-            $name = strtoupper($_POST['name']);
-            $surname = strtoupper($_POST['surname']);
-            $role = strtoupper($_POST['role']);
-
-            $safe_password = md5($password);
-
-
-            $query  = "INSERT INTO users (";
-            $query .= "  username, password, name, surname, role";
-            $query .= ") VALUES (";
-            $query .= "  '{$user_name}', '{$safe_password}', '{$name}', '{$surname}', '{$role}'";
-            $query .= ")";
-            $result = mysqli_query($connection, $query);
-
-            if ($result) {
-                // Success
-                redirect_to("user?id=".mysqli_insert_id($connection));
-            } else {
-                // Failure
-                echo 'Failed';
-                die("Subject update failed.".mysqli_error($connection));
-            }
-        }
-        if (isset($_POST['editUser'])) {
-
-            $user_name = strtoupper($_POST['username']);
-            $password = $_POST['password'];
-            $name = strtoupper($_POST['name']);
-            $surname = strtoupper($_POST['surname']);
-            $role = strtoupper($_POST['role']);
-            $post_id = $_POST['id'];
-            $safe_password = md5($password);
-
-
-            $update_query  = "UPDATE users SET ";
-            $update_query .= "username = '{$user_name}', ";
-            $update_query .= "password = '{$safe_password}', ";
-            $update_query .= "name = '{$name}', ";
-            $update_query .= "surname = '{$surname}', ";
-            $update_query .= "role = '{$role}' ";
-            $update_query .= "WHERE id = '{$post_id}' ";
-            $update_query .= "LIMIT 1";
-            $result = mysqli_query($connection,$update_query);
-            if ($result && mysqli_affected_rows($connection) >= 0) {
-                // Success
-                redirect_to("user?id=".$post_id);
-            } else {
-                die("Subject update failed.".mysqli_error($connection));
-
-            }
-        }
-
         $id = '';
         if (isset($_GET['id'])){
             $id=$_GET['id'];

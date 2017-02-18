@@ -58,6 +58,13 @@ class PodController{
 
     }
 
+    public function addEditPod(){
+        $model = new Pod();
+        if (isset($_POST['editPod'])) {
+            $model->editPod();
+        }
+    }
+
     public function delPod(){
 
         $model = new Pod();

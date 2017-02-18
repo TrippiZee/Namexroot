@@ -22,7 +22,7 @@
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="<?php echo htmlentities($data['date'])?>">
+                            <input type="text" class="form-control date" name="date" value="<?php echo htmlentities($data['date'])?>">
                         </div>
                     </div>
                     <div class="form-group row">

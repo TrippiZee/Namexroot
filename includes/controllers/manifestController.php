@@ -63,34 +63,12 @@ class ManifestController {
     }
 
     public function addEditManifest(){
-        global $connection;
+        $model = new Manifest();
 
         if (isset($_POST['editManifest'])) {
-
-            $number = $_POST['manifest_no'];
-            $date = $_POST['date'];
-            $driver = strtoupper($_POST['driver']);
-            $post_id = $_POST['id'];
-            $co_driver = strtoupper($_POST['co_driver']);
-            $caps_reg_no = strtoupper($_POST['reg_no']);
-            $reg_no = trim($caps_reg_no,"");
-
-            $update_query  = "UPDATE manifest SET ";
-            $update_query .= "manifest_no = '{$number}', ";
-            $update_query .= "date = '{$date}', ";
-            $update_query .= "driver = '{$driver}', ";
-            $update_query .= "co_driver = '{$co_driver}', ";
-            $update_query .= "reg_no = '{$reg_no}' ";
-            $update_query .= "WHERE id = '{$post_id}' ";
-            $update_query .= "LIMIT 1";
-            $result = mysqli_query($connection,$update_query);
-            if ($result && mysqli_affected_rows($connection) >= 0) {
-                // Success
-                redirect_to("manifest?id=".$post_id);
-            } else {
-                die("Subject update failed.".mysqli_error($connection));
-
-            }
+            $model->editManifest();
+        } elseif (isset($_POST['addManifest'])){
+            $model->addManifest();
         }
 
     }

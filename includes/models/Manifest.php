@@ -39,6 +39,28 @@ class Manifest
         return array($statement->fetchAll(PDO::FETCH_CLASS),$filter->rowCount());
     }
 
+    public function editManifest(){
+
+        $pdo = App::get('pdo');
+        $number = $_POST['manifest_no'];
+        $date = $_POST['date'];
+        $driver = strtoupper($_POST['driver']);
+        $post_id = $_POST['id'];
+        $co_driver = strtoupper($_POST['co_driver']);
+        $caps_reg_no = strtoupper($_POST['reg_no']);
+        $reg_no = trim($caps_reg_no,"");
+
+        $statement = $pdo->prepare("UPDATE manifest SET manifest_no = '{$number}',date = '{$date}',driver = '{$driver}',co_driver = '{$co_driver}',
+                      reg_no = '{$reg_no}' WHERE id = '{$post_id}' LIMIT 1");
+        $statement->execute();
+        redirect_to('manifest?id='.$post_id);
+
+    }
+
+    public function addManifest(){
+
+    }
+
     public function deleteRecord($id){
 
         $pdo = App::get('pdo');
