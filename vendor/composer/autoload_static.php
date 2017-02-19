@@ -7,6 +7,7 @@ namespace Composer\Autoload;
 class ComposerStaticInit819f9842d034e6439b92d992998a92c9
 {
     public static $files = array (
+        '131c28ab7c032c370fe0a54e155f4f53' => __DIR__ . '/../..' . '/includes/core.php',
         '275ee92beb648277120f236f69820590' => __DIR__ . '/../..' . '/includes/helpers/global.php',
     );
 
@@ -14,13 +15,15 @@ class ComposerStaticInit819f9842d034e6439b92d992998a92c9
         'ComposerAutoloaderInit819f9842d034e6439b92d992998a92c9' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit819f9842d034e6439b92d992998a92c9' => __DIR__ . '/..' . '/composer/autoload_static.php',
+        'FPDF' => __DIR__ . '/../..' . '/includes/fpdf.php',
         'Includes\\App' => __DIR__ . '/../..' . '/includes/app.php',
         'Includes\\Controllers\\CustomerController' => __DIR__ . '/../..' . '/includes/controllers/customerController.php',
+        'Includes\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/includes/controllers/dashboardController.php',
         'Includes\\Controllers\\ManifestController' => __DIR__ . '/../..' . '/includes/controllers/manifestController.php',
         'Includes\\Controllers\\PodController' => __DIR__ . '/../..' . '/includes/controllers/podController.php',
+        'Includes\\Controllers\\SystemController' => __DIR__ . '/../..' . '/includes/controllers/systemController.php',
         'Includes\\Controllers\\UserController' => __DIR__ . '/../..' . '/includes/controllers/userController.php',
         'Includes\\Controllers\\WaybillController' => __DIR__ . '/../..' . '/includes/controllers/waybillController.php',
-        'Includes\\FPDF' => __DIR__ . '/../..' . '/includes/fpdf.php',
         'Includes\\Models\\Connection' => __DIR__ . '/../..' . '/includes/models/Connection.php',
         'Includes\\Models\\Customers' => __DIR__ . '/../..' . '/includes/models/Customers.php',
         'Includes\\Models\\Manifest' => __DIR__ . '/../..' . '/includes/models/Manifest.php',
@@ -29,9 +32,9 @@ class ComposerStaticInit819f9842d034e6439b92d992998a92c9
         'Includes\\Models\\User' => __DIR__ . '/../..' . '/includes/models/User.php',
         'Includes\\Models\\UserRole' => __DIR__ . '/../..' . '/includes/models/UserRole.php',
         'Includes\\Models\\Waybills' => __DIR__ . '/../..' . '/includes/models/Waybills.php',
-        'Includes\\PDF' => __DIR__ . '/../..' . '/includes/print_manifest.php',
         'Includes\\Request' => __DIR__ . '/../..' . '/includes/Request.php',
         'Includes\\Router' => __DIR__ . '/../..' . '/includes/router.php',
+        'PDF' => __DIR__ . '/../..' . '/includes/print_invoice.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

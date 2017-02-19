@@ -1,6 +1,6 @@
 <?php
 
-$router->get('','ManifestController@allManifests');
+$router->get('','DashboardController@dashboard');
 $router->get('customer','CustomerController@allCustomers');
 $router->get('manifest','ManifestController@allManifests');
 $router->get('waybill','WaybillController@allWaybills');
@@ -9,7 +9,7 @@ $router->get('tracking','CustomerController@allCustomers');
 $router->get('costing','CustomerController@allCustomers');
 $router->get('reports','CustomerController@allCustomers');
 $router->get('user','UserController@allUsers');
-$router->get('logout','CustomerController@allCustomers');
+$router->get('logout','SystemController@logout');
 $router->get('print_manifest','ManifestController@printManifest');
 
 $router->get('del_customer','CustomerController@delCustomer');

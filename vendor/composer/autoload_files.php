@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    '131c28ab7c032c370fe0a54e155f4f53' => $baseDir . '/includes/core.php',
     '275ee92beb648277120f236f69820590' => $baseDir . '/includes/helpers/global.php',
 );

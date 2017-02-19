@@ -7,7 +7,7 @@ use Includes\Request;
 if (logged_in()) {
     Router::load('routes.php')->redirect(Request::uri(),Request::method());
 } else {
-    include "/loginform.php";
+    include "loginform.php";
 
 }
 
