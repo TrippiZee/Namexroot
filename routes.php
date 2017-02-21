@@ -26,6 +26,7 @@ $router->post('tracking','CustomerController@allCustomers');
 $router->post('costing','CustomerController@allCustomers');
 $router->post('reports','CustomerController@allCustomers');
 $router->post('user','UserController@addEditUser');
+$router->post('checkUser','SystemController@checkUser');
 
 $router->post('ajaxCustomer','CustomerController@filterCustomers');
 $router->post('ajaxManifest','ManifestController@filterManifests');

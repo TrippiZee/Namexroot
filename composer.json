@@ -4,7 +4,6 @@
       "./"
     ],
     "files":[
-      "includes/core.php",
       "includes/helpers/global.php"
     ]
   }

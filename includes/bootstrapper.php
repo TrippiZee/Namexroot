@@ -2,7 +2,6 @@
 
 use Includes\Models\Connection;
 use Includes\App;
-//require ("includes/core.php");
 require ("includes/db_connection.php");
 
 App::bind('config',require ("config.php"));

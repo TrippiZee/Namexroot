@@ -5,12 +5,12 @@ include "includes/views/layout/header.php";
 <div class="col-sm-11 main">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-            <h2>Namibia Express Quickstart:</h2>
+            <h1 class="dashHeading">Namibia Express Daily Tasks:</h1>
         </div>
     </div>
     <div class="row ">
         <div class="col-sm-6 db-top-left">
-            <h1>Customer:</h1>
+            <h1>Manifests:</h1>
             <button href="#addNewCustomer" data-toggle="modal"  class="btn btn-success col-xs-12 btn-narrow">Add New Customer</button>
             <br/>
             <button href="#addNewCustomer" data-toggle="modal"  class="btn btn-success col-xs-12 btn-narrow">View/Edit Customers</button>

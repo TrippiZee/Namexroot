@@ -63,8 +63,20 @@ class User
         $statement = $pdo->prepare("DELETE FROM users WHERE id = {$id} LIMIT 1");
         $statement->execute();
         redirect_to('user');
-
     }
 
+    public function userMatch($userName,$password){
+        $pdo = App::get('pdo');
+        $statement = $pdo->prepare("SELECT id FROM users WHERE username = '{$userName}' AND password = '{$password}'");
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_CLASS);
+        if ($statement->rowCount()==0){
+            echo '<div id=\'message\'>Invalid username/password combination.</div>';
+        }elseif ($statement->rowCount()== 1){
+            $_SESSION['user_id'] = $result['id'];
+            redirect_to('/');
+        }
+
+    }
 
 }
