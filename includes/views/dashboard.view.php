@@ -11,6 +11,14 @@ include "includes/views/layout/header.php";
     <div class="row ">
         <div class="col-sm-6 db-top-left">
             <h1>Manifests:</h1>
+            <table class="table table-striped dataTable default">
+                <thead><tr><th>Manifest NO</th></tr></thead>
+                <tbody>
+                        <?php foreach ($date as $manifests){
+                            echo "<tr><td>".$manifests->manifest_no."</td></tr>";
+                        } ?>
+                </tbody>
+            </table>
             <button href="#addNewCustomer" data-toggle="modal"  class="btn btn-success col-xs-12 btn-narrow">Add New Customer</button>
             <br/>
             <button href="#addNewCustomer" data-toggle="modal"  class="btn btn-success col-xs-12 btn-narrow">View/Edit Customers</button>

@@ -4,6 +4,7 @@ namespace Includes\Models;
 
 use PDO;
 use Includes\App;
+use Carbon\Carbon;
 
 class Manifest
 {
@@ -67,6 +68,22 @@ class Manifest
         $statement = $pdo->prepare("DELETE FROM manifest WHERE id = {$id} LIMIT 1");
         $statement->execute();
         redirect_to('manifest');
-
     }
+
+    public function getCurrentManifests(){
+
+        $pdo = App::get('pdo');
+        $date = Carbon::now();
+//        die($date);
+//        return $date;
+        $noTime = $date->toDateString();
+//        return $noTime;
+
+        $statement = $pdo->prepare("SELECT * FROM manifest WHERE date = '{$noTime}'");
+//        $statement = $pdo->prepare("SELECT * FROM manifest");
+        $statement->execute();
+//        die( $statement->fetchAll(PDO::FETCH_CLASS));
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
 }
