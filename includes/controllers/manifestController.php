@@ -70,7 +70,6 @@ class ManifestController {
         } elseif (isset($_POST['addManifest'])){
             $model->addManifest();
         }
-
     }
 
     public function delManifest(){

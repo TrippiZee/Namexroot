@@ -59,7 +59,17 @@ class Manifest
     }
 
     public function addManifest(){
+        $pdo = App::get('pdo');
+        $number = $_POST['manifest_no'];
+        $date = $_POST['date'];
+        $driver = strtoupper($_POST['driver']);
+        $co_driver = strtoupper($_POST['co_driver']);
+        $caps_reg_no = strtoupper($_POST['reg_no']);
+        $reg_no = trim($caps_reg_no,"");
 
+        $statement = $pdo->prepare("INSERT INTO manifest (manifest_no, date, driver, co_driver, reg_no, finalised) VALUES ('{$number}', '{$date}','{$driver}','{$co_driver}', '{$reg_no}','0')");
+        $statement->execute();
+        redirect_to('manifest?id='.$pdo->lastInsertId());
     }
 
     public function deleteRecord($id){
@@ -74,15 +84,9 @@ class Manifest
 
         $pdo = App::get('pdo');
         $date = Carbon::now();
-//        die($date);
-//        return $date;
-        $noTime = $date->toDateString();
-//        return $noTime;
 
-        $statement = $pdo->prepare("SELECT * FROM manifest WHERE date = '{$noTime}'");
-//        $statement = $pdo->prepare("SELECT * FROM manifest");
+        $statement = $pdo->prepare("SELECT * FROM manifest WHERE date = '{$date->toDateString()}' AND finalised = 0");
         $statement->execute();
-//        die( $statement->fetchAll(PDO::FETCH_CLASS));
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
 

@@ -2,6 +2,7 @@
 
 namespace Includes\Controllers;
 
+use Carbon\Carbon;
 use Includes\App;
 use Includes\Models\Customers;
 use Includes\Models\Manifest;
@@ -14,8 +15,8 @@ class DashboardController{
 
         $manifest = new Manifest();
         $test = $manifest->getCurrentManifests();
-//        $test = "test var";
-        return view('dashboard',['date'=>$test]);
+        $day = Carbon::now();
+        return view('dashboard',['date'=>$test,'currentDay'=>$day->toDateString()]);
 //        return view('dashboard');
     }
 

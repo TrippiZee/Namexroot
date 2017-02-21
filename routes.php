@@ -20,6 +20,7 @@ $router->get('del_user','UserController@delUser');
 
 $router->post('customer','CustomerController@addEditCustomer');
 $router->post('manifest','ManifestController@addEditManifest');
+$router->post('','ManifestController@addEditManifest');
 $router->post('waybill','WaybillController@addEditWaybill');
 $router->post('pod','PodController@addEditPod');
 $router->post('tracking','CustomerController@allCustomers');
