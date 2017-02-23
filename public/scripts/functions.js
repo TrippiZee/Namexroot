@@ -49,11 +49,21 @@ $(document).ready(function() {
     });
     $(".time").timepicker();
 
-    $(".manifestsWaybills").click(function () {
+    $(".editWaybill").click(function () {
         //var waybillNo = $(this).closest('tr').find('td.shipper').text();
-        var waybillNo = $(this).closest('tr').find('td.shipper').val();
-        console.log(waybillNo);
-        console.log("Still Testing");
-        $("modalWaybillNO").val(waybillNo);
+        var waybillNo = $(this).closest('tr').find('td.waybillNo').text();
+        var shipper = $(this).closest('tr').find('td.shipper').text();
+        var consignee = $(this).closest('tr').find('td.consignee').text();
+        var qty = $(this).closest('tr').find('td.qty').text();
+        var weight = $(this).closest('tr').find('td.weight').text();
+        var type = $(this).closest('tr').find('td.type').text();
+        var remarks = $(this).closest('tr').find('td.remarks').text();
+        $(".modalWaybillNO").val(waybillNo);
+        $(".modalShipper").val(shipper);
+        $(".modalConsignee").val(consignee);
+        $(".modalQty").val(qty);
+        $(".modalWeight").val(weight);
+        $(".modalType").val(type);
+        $(".modalRemarks").val(remarks);
     });
 });

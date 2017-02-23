@@ -69,7 +69,7 @@ include "includes/views/layout/header.php";
         <div id="table">
             <?php
 
-            echo '<table class="table dataTable default manifestsWaybills">';
+            echo '<table class="table dataTable default ">';
             echo '<h2>Waybills:</h2>';
 
             echo '<thead>';
@@ -87,7 +87,7 @@ include "includes/views/layout/header.php";
                 echo '<td class="edit editWaybill"><a><input type="button" data-toggle="modal" data-target="#editWaybill" value="Edit Waybill"/></a></td>';
                 if (getuserfield('role') == 'admin'){
                     echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';}
-                echo '<td class="edit"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td></tr>';
+                echo '<td class="edit editWaybill"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td></tr>';
 //                echo '<tr><td class="edit"><button data-toggle="modal" data-target="#createPOD" class="btn btn-success col-xs-12 btn-narrow">Create POD</button></td></tr>';
             }
             echo '</table>';

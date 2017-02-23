@@ -129,47 +129,45 @@
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="<?php echo htmlentities($data['date'])?>">
+                            <input type="date" class="form-control" name="date" value="">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="shipper" class="col-sm-2 col-form-label">Shipper</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="shipper" value="<?php echo htmlentities($data['shipper'])?>">
+                            <input type="text" class="form-control modalShipper" name="shipper" value="">
                         </div>
                         <label for="consignee" class="col-sm-2 col-form-label">Consignee</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="consignee" value="<?php echo htmlentities($data['consignee'])?>">
+                            <input type="text" class="form-control modalConsignee" name="consignee" value="">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="qty" class="col-sm-2 col-form-label">Quantity</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="qty" value="<?php echo htmlentities($data['qty'])?>">
+                            <input type="text" class="form-control modalQty" name="qty" value="">
                         </div>
                         <label for="weight" class="col-sm-2 col-form-label">Weight</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="weight" value="<?php echo htmlentities($data['weight'])?>">
+                            <input type="text" class="form-control modalWeight" name="weight" value="">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="type" class="col-sm-2 col-form-label">Type</label>
                         <div class="col-sm-4">
-                            <select name="type">
-                                <option selected value="<?php echo htmlentities($data['type'])?>"><?php echo htmlentities($data['type'])?></option>
+                            <select name="type" class="modalType">
+                                <option selected value=""></option>
                                 <?php foreach($services as $key => $service){?>
                                     <option value="<?php echo $service->type;?>"><?php echo $service->type;?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
-
-                            <!--                            <input type="text" class="form-control" name="type" value="--><?php //echo htmlentities($data['type'])?><!--">-->
                         </div>
                         <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="remarks" value="<?php echo htmlentities($data['remarks'])?>">
+                            <input type="text" class="form-control modalRemarks" name="remarks" value="">
                         </div>
                     </div>
 

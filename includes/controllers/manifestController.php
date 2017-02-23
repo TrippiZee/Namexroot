@@ -2,14 +2,18 @@
 namespace Includes\Controllers;
 use Includes\App;
 use Includes\Models\Manifest;
-
+use Includes\Models\Services;
 
 class ManifestController {
 
     public function allManifests(){
 //        $connection = App::get('connection');
         global $connection;
-        return view('manifest',['connection'=>$connection]);
+        $pdo = App::get('pdo');
+        $services = new Services();
+        $getServices = $services->getServices($pdo);
+
+        return view('manifest',['services'=>$getServices,'connection'=>$connection]);
     }
 
     public function printManifest(){
