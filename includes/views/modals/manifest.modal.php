@@ -125,7 +125,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">POD Number</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="number" value="<?php echo htmlentities($data['waybill_no'])?>">
+                            <input type="text" class="form-control modalWaybillNO" name="number" value="">
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">

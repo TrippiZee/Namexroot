@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     $(".customers").dataTable({
         "processing": true,
         "serverSide":true,
@@ -48,4 +49,11 @@ $(document).ready(function() {
     });
     $(".time").timepicker();
 
+    $(".manifestsWaybills").click(function () {
+        //var waybillNo = $(this).closest('tr').find('td.shipper').text();
+        var waybillNo = $(this).closest('tr').find('td.shipper').val();
+        console.log(waybillNo);
+        console.log("Still Testing");
+        $("modalWaybillNO").val(waybillNo);
+    });
 });

@@ -13,11 +13,6 @@ include "layout/header.php";
             $query_result = manifest_details($id);
             $data = mysqli_fetch_array($query_result);
 
-            $manifest_id = $data['manifest_no'];
-            $manifest_no = get_manifest_no($manifest_id);
-
-            $manifest = mysqli_fetch_array($manifest_no);
-
             echo '<h2>Details:</h2>';
             echo '<table class="table dataTable default">';
             echo "<tr><th>Date</th><th>Manifest Number</th><th>Waybill Number</th><th>Shipper</th><th>Consignee</th><th>Qty</th><th>Weight</th><th>Type</th><th>Remarks</th></tr>";
@@ -41,7 +36,7 @@ include "layout/header.php";
                     <tr><th>Waybill_No</th><th>Date</th><th>Manifest_No</th><th>Shipper</th><th>Consignee</th></tr>
                     </thead></table>';
         }
-        require 'modals/waybill.modal.php';
+        require 'modals/manifest.modal.php';
         ?>
 
 

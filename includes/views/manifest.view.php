@@ -61,7 +61,7 @@ include "includes/views/layout/header.php";
             $economy = mysqli_fetch_array($sum_economy);
 
             echo '<table class="table dataTable default" >';
-            echo '<tr><td style="width:37.5%"></td><td><a href="new_waybill?id=' .$manifest_id.'"><input type="button" class="btn btn-success col-xs-12 btn-narrow" value="Add New Waybill"/></a> </td><td style="width:37.5%"></td></tr>';
+            echo '<tr><td style="width:37.5%"></td><td><a><input type="button" data-toggle="modal" data-target="#addWaybill" value="Add New Waybill"/></a></td><td style="width:37.5%"></td></tr>';
             echo '<tr><br /></tr>';
             echo "</table></tr>";
             ?>
@@ -69,30 +69,28 @@ include "includes/views/layout/header.php";
         <div id="table">
             <?php
 
-            echo '<tr><table class="table dataTable default">';
+            echo '<table class="table dataTable default manifestsWaybills">';
             echo '<h2>Waybills:</h2>';
 
-            echo "<tr><th>Waybill Number</th><th>Shipper</th><th>Consignee</th><th>Qty</th><th>Weight</th><th>Type</th><th>Remarks</th></tr>";
+            echo '<thead>';
+            echo "<tr><th>Waybill Number</th><th>Shipper</th><th>Consignee</th><th>Qty</th><th>Weight</th><th>Type</th><th>Remarks</th><th>Edit</th><th>Delete</th><th>Create POD</th></tr>";
+            echo '</thead>';
             while ($data = mysqli_fetch_assoc($manifest_query_details)) {
 
-                echo '<tr><td>'. $data['waybill_no']. '</td>';
-                echo '<td>'.$data['shipper'].'</td>';
-                echo '<td>'.$data['consignee'].'</td>';
-                echo '<td>'.$data['qty'].'</td>';
-                echo '<td>'.$data['weight'].'</td>';
-                echo '<td>'.$data['type'].'</td>';
-                echo '<td>'.$data['remarks'].'</td>';
-                echo '<td style="visibility: hidden">'.$data['date'].'</td></tr>';
-                echo '<tr><td class="edit"><a href="edit_waybill?id=' .$data['id'].'& shipper='.$data['shipper'].'& type='.$data['type'].'"><input type="button" value="Edit"/></a></td>';
+                echo '<tr><td class="waybillNo">'. $data['waybill_no']. '</td>';
+                echo '<td class="shipper">'.$data['shipper'].'</td>';
+                echo '<td class="consignee">'.$data['consignee'].'</td>';
+                echo '<td class="qty">'.$data['qty'].'</td>';
+                echo '<td class="weight">'.$data['weight'].'</td>';
+                echo '<td class="type">'.$data['type'].'</td>';
+                echo '<td class="remarks">'.$data['remarks'].'</td>';
+                echo '<td class="edit editWaybill"><a><input type="button" data-toggle="modal" data-target="#editWaybill" value="Edit Waybill"/></a></td>';
                 if (getuserfield('role') == 'admin'){
                     echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';}
-                echo '<td></td>';
-                echo '<td></td>';
-                echo '<td></td>';
-                echo '<td></td>';
-                echo '<tr><td class="edit"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td></tr>';
+                echo '<td class="edit"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td></tr>';
 //                echo '<tr><td class="edit"><button data-toggle="modal" data-target="#createPOD" class="btn btn-success col-xs-12 btn-narrow">Create POD</button></td></tr>';
             }
+            echo '</table>';
 
             echo '<table class="table dataTable default">';
             echo '<h2>Seal Numbers:</h2>';
