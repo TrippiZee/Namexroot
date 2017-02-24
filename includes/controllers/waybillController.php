@@ -68,8 +68,13 @@ class WaybillController{
         $model = new Waybills();
 
         if (isset($_POST['createPOD'])) {
-
             $model->createPod();
+        }
+        elseif (isset($_POST['addWaybill'])) {
+            $model->createWaybill();
+        }
+        if (isset($_POST['editWaybill'])) {
+            $model->editWaybill();
         }
     }
 

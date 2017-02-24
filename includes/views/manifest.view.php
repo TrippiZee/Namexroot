@@ -84,11 +84,10 @@ include "includes/views/layout/header.php";
                 echo '<td class="weight">'.$data['weight'].'</td>';
                 echo '<td class="type">'.$data['type'].'</td>';
                 echo '<td class="remarks">'.$data['remarks'].'</td>';
-                echo '<td class="edit editWaybill"><a><input type="button" data-toggle="modal" data-target="#editWaybill" value="Edit Waybill"/></a></td>';
+                echo '<td class="edit getRowText"><a><input type="button" data-toggle="modal" data-target="#editWaybill" value="Edit Waybill"/></a></td>';
                 if (getuserfield('role') == 'admin'){
                     echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';}
-                echo '<td class="edit editWaybill"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td></tr>';
-//                echo '<tr><td class="edit"><button data-toggle="modal" data-target="#createPOD" class="btn btn-success col-xs-12 btn-narrow">Create POD</button></td></tr>';
+                echo '<td class="edit getRowText"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td></tr>';
             }
             echo '</table>';
 

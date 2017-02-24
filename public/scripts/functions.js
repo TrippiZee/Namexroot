@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    $("#dimensions").hide();
+
     $(".customers").dataTable({
         "processing": true,
         "serverSide":true,
@@ -49,7 +51,7 @@ $(document).ready(function() {
     });
     $(".time").timepicker();
 
-    $(".editWaybill").click(function () {
+    $(".getRowText").click(function () {
         //var waybillNo = $(this).closest('tr').find('td.shipper').text();
         var waybillNo = $(this).closest('tr').find('td.waybillNo').text();
         var shipper = $(this).closest('tr').find('td.shipper').text();
