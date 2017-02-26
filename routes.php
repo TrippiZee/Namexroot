@@ -29,6 +29,8 @@ $router->post('reports','CustomerController@allCustomers');
 $router->post('user','UserController@addEditUser');
 $router->post('checkUser','SystemController@checkUser');
 
+$router->get('dashboardManifestWaybills','WaybillController@getManifestWaybillsDashboard');
+
 $router->post('ajaxCustomer','CustomerController@filterCustomers');
 $router->post('ajaxManifest','ManifestController@filterManifests');
 $router->post('ajaxPods','PodController@filterPods');

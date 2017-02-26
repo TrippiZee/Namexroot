@@ -70,12 +70,19 @@ class WaybillController{
         if (isset($_POST['createPOD'])) {
             $model->createPod();
         }
-        elseif (isset($_POST['addWaybill'])) {
+        elseif (isset($_POST['createWaybill'])) {
             $model->createWaybill();
         }
         if (isset($_POST['editWaybill'])) {
             $model->editWaybill();
         }
+    }
+
+    public function getManifestWaybillsDashboard(){
+
+        $model = new Waybills();
+        $model->getWaybillByManifestId();
+
     }
 
     public function delWaybill(){

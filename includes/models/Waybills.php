@@ -39,6 +39,20 @@ class Waybills{
         return array($statement->fetchAll(PDO::FETCH_CLASS),$filter->rowCount());
     }
 
+    public function getWaybillByManifestId(){
+        $manifestId = $_GET['manifestId'];
+        $pdo = App::get('pdo');
+
+        $statement = $pdo->prepare('SELECT * FROM manifest_details WHERE manifest_no = "'.$manifestId.'"');
+        $statement->execute();
+
+//        return array($statement->fetchAll(PDO::FETCH_CLASS));
+        $data =  $statement->fetchAll(PDO::FETCH_CLASS);
+//        die(array($data));
+        echo json_encode($data);
+
+    }
+
     public function createPod(){
         $pdo = App::get('pdo');
 
@@ -72,7 +86,7 @@ class Waybills{
         $weight = $_POST['weight'];
         $id = $_POST['manifestId'];
 
-        $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, quantity, weight, type, remarks) VALUES('{$id}','{$waybill_no}','{$date}','{$shipper}','{$consignee}','{$qty}','{$weight}','{$type}','{$remarks}')");
+        $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks) VALUES('{$id}','{$waybill_no}','{$date}','{$shipper}','{$consignee}','{$qty}','{$weight}','{$type}','{$remarks}')");
         $statement->execute();
         redirect_to("manifest?id=".$id);
 

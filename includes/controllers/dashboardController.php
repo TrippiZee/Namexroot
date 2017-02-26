@@ -8,15 +8,22 @@ use Includes\Models\Customers;
 use Includes\Models\Manifest;
 use Includes\Models\Waybills;
 use Includes\Models\Pod;
+use Includes\Models\Services;
+
 
 class DashboardController{
 
     public function dashboard(){
 
+        $pdo = App::get('pdo');
+
         $manifest = new Manifest();
-        $test = $manifest->getCurrentManifests();
+        $currentManifests = $manifest->getCurrentManifests();
         $day = Carbon::now();
-        return view('dashboard',['date'=>$test,'currentDay'=>$day->toDateString()]);
+        $services = new Services();
+        $getServices = $services->getServices($pdo);
+
+        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day->toDateString(),'services'=>$getServices]);
 //        return view('dashboard');
     }
 

@@ -36,7 +36,7 @@ include "layout/header.php";
                     <tr><th>Waybill_No</th><th>Date</th><th>Manifest_No</th><th>Shipper</th><th>Consignee</th></tr>
                     </thead></table>';
         }
-        require 'modals/manifest.modal.php';
+        require 'modals/waybill.modal.php';
         ?>
 
 

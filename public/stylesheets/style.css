@@ -348,24 +348,6 @@ li.active {
     margin-left: 200px;
 }
 
-.db-top{
-
-}
-.db-top-left{
-    border: 2px solid gold
-}
-.db-top-right{
-    border: 2px solid GREEN
-}
-.db-bottom{
-}
-.db-bottom-left{
-    border: 2px solid blue
-}
-.db-bottom-right{
-    border: 2px solid red
-}
-
 table.dataTable{
     padding-right: 20px;
 }

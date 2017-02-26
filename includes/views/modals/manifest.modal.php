@@ -121,7 +121,7 @@
                 <h4 class="modal-title">Create New Waybill</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="waybill" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Waybill Number</label>
@@ -130,7 +130,7 @@
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="">
+                            <input type="text" class="form-control date" name="date" value="">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -188,9 +188,9 @@
                     </div>
 
                     <div class="form-group row" id="dimensions">
-                        <label for="Lenght" class="col-sm-1 col-form-label">Lenght</label>
+                        <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control date" name="lenght" value="">
+                            <input type="text" class="form-control date" name="length" value="">
                         </div>
                         <label for="width" class="col-sm-1 col-form-label">Width</label>
                         <div class="col-sm-3">
@@ -227,7 +227,7 @@
                 <h4 class="modal-title">Edit Waybill</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="waybill" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Waybill Number</label>
@@ -236,7 +236,7 @@
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="">
+                            <input type="text" class="form-control date modalDate" name="date" value="">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -264,7 +264,7 @@
                         <label for="type" class="col-sm-2 col-form-label">Type</label>
                         <div class="col-sm-4">
                             <select name="type" class="modalType">
-                                <option selected value=""></option>
+                                <option selected value="<?php echo htmlentities($data['type'])?>"></option>
                                 <?php foreach($services as $key => $service){?>
                                     <option value="<?php echo $service->type;?>"><?php echo $service->type;?></option>
                                 <?php
@@ -275,7 +275,7 @@
                         <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control modalRemarks" name="remarks" value="">
-                            <input type="hidden" class="form-control" id="waybillId" name="waybillId" value="<?php echo htmlentities($data['id'])?>">
+                            <input type="hidden" class="form-control modalId" id="waybillId" name="waybillId" value="">
                             <input type="hidden" class="form-control" id="manifestId" name="manifestId" value="<?php echo htmlentities($manifest['id'])?>">
                         </div>
                     </div>
@@ -306,7 +306,7 @@
                 <h4 class="modal-title">Create POD</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="waybill" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">POD Number</label>
@@ -315,7 +315,7 @@
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="">
+                            <input type="text" class="form-control date modalDate" name="date" value="">
                         </div>
                     </div>
                     <div class="form-group row">
