@@ -52,16 +52,19 @@ $(document).ready(function() {
     $(".time").timepicker();
 
     $(".getRowText").click(function () {
-        //var waybillNo = $(this).closest('tr').find('td.shipper').text();
-        var waybillNo = $(this).closest('tr').find('td.waybillNo').text();
-        var shipper = $(this).closest('tr').find('td.shipper').text();
-        var consignee = $(this).closest('tr').find('td.consignee').text();
-        var qty = $(this).closest('tr').find('td.qty').text();
-        var weight = $(this).closest('tr').find('td.weight').text();
-        var type = $(this).closest('tr').find('td.type').text();
-        var remarks = $(this).closest('tr').find('td.remarks').text();
-        var date = $(this).closest('tr').find('td.date').text();
-        var id = $(this).closest('tr').find('td.id').text();
+        getRowData($(this));
+    });
+
+    function getRowData(element){
+        var waybillNo = element.closest('tr').find('td.waybillNo').text();
+        var shipper = element.closest('tr').find('td.shipper').text();
+        var consignee = element.closest('tr').find('td.consignee').text();
+        var qty = element.closest('tr').find('td.qty').text();
+        var weight = element.closest('tr').find('td.weight').text();
+        var type = element.closest('tr').find('td.type').text();
+        var remarks = element.closest('tr').find('td.remarks').text();
+        var date = element.closest('tr').find('td.date').text();
+        var id = element.closest('tr').find('td.id').text();
         $(".modalWaybillNO").val(waybillNo);
         $(".modalShipper").val(shipper);
         $(".modalConsignee").val(consignee);
@@ -71,7 +74,7 @@ $(document).ready(function() {
         $(".modalRemarks").val(remarks);
         $(".modalDate").val(date);
         $(".modalId").val(id);
-    });
+    }
 
     $(".dashboardGetWaybill").click(function(){
         console.log("clicked");
@@ -91,17 +94,29 @@ $(document).ready(function() {
                     subcat.append("<tr><td>NO WAYBILLS EXIST - CREATE A NEW ONE?</td></tr>");
                 }else{
                     $.each(data, function(index,element) {
-                        subcat.append("<tr><td class='waybillNo'><a href='#' data-toggle='modal' data-target='#editWaybill'>" + element.waybill_no + "</a></td>" +
+                        subcat.append("<tr><td class='waybillNo getRowTextDash'><a href='#' data-toggle='modal' data-target='#editWaybillDashboard' data-waybillNo='element.waybill_no'>" + element.waybill_no + "</a></td>" +
                             "<td class='date'>" + element.date + "</td>" +
-                            "<td>" + element.shipper + "</td>" +
-                            "<td>" + element.consignee + "</td>" +
+                            "<td class='shipper'>" + element.shipper + "</td>" +
+                            "<td class='consignee'>" + element.consignee + "</td>" +
                             "<td><input type='text' value=''/></td>" +
                             "<td class='edit'><a href='waybill?id=" + element.id + "'><input type='button' value='Create POD'/></a></td>" +
-                            "<td style='visibility: hidden'>"+ element.manifest_no+"</td></tr>"
+                            "<td  class='qty' style='visibility: hidden;width:1px'>"+ element.qty+"</td>" +
+                            "<td  class='weight' style='visibility: hidden;width:1px'>"+ element.weight+"</td>" +
+                            "<td  class='type' style='visibility: hidden;width:1px'>"+ element.type+"</td>" +
+                            "<td  class='remarks' style='visibility: hidden;width:1px'>"+ element.remarks+"</td>" +
+                            "<td  class='id' style='visibility: hidden;width:1px'>"+ element.id+"</td>" +
+                            "<td  class='id' style='visibility: hidden;width:1px'>"+ element.manifest_no+"</td></tr>"
                         );
                     })
                 };
             }
         });
     });
+
+    $(".initialiseInjectedHTML").on('click','.getRowTextDash',function () {
+        getRowData($(this));
+    });
+
+
+
 });

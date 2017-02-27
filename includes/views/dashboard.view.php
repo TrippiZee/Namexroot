@@ -1,7 +1,7 @@
 <?php
 
 include "includes/views/layout/header.php";
-require 'modals/manifest.modal.php';
+//require 'modals/manifest.modal.php';
 require 'modals/dashboard.modal.php';
 
 ?>
@@ -15,7 +15,7 @@ require 'modals/dashboard.modal.php';
         <div class="col-sm-6">
             <h1>Manifests for Today(<?= $currentDay; ?>):</h1>
             <table class="table table-striped dataTable default">
-                <thead><tr><th>Manifest No</th><th>Driver</th><th>Co Driver</th><th>Registration No</th><th>Finalise</th></tr></thead>
+                <thead><tr><th>Manifest No</th><th>Driver</th><th>Co Driver</th><th>Registration No</th><th>Finalise</th><th>Details</th></tr></thead>
                 <tbody>
                         <?php foreach ($date as $manifests){
                             echo '<tr>
@@ -24,6 +24,7 @@ require 'modals/dashboard.modal.php';
                                     <td>'.$manifests->co_driver.'</td>
                                     <td>'.$manifests->reg_no.'</td>
                                     <td><a><input type="button" value="Finalise"></a></td>
+                                    <td><a href="manifest?id='.$manifests->id.'"><input type="button" value="Details"></a></td>
                                     <td class="manifestId" style="visibility: hidden">'.$manifests->id.'</td>
                                 </tr>';
                         } ?>
@@ -39,8 +40,8 @@ require 'modals/dashboard.modal.php';
         </div>
         <div class="col-sm-6">
             <h1>Waybills</h1>
-            <table class="table table-striped dataTable default ">
-                <thead><tr><th>Waybill No</th><th>Date</th><th>Shipper</th><th>Consignee</th><th>Location</th><th>Create POD</th><th>Delete</th></tr></thead>
+            <table class="table table-striped dataTable default initialiseInjectedHTML">
+                <thead><tr><th>Waybill No</th><th>Date</th><th>Shipper</th><th>Consignee</th><th>Location</th><th>Create POD</th></tr></thead>
                 <tbody class="waybillOfSelectedManifest">
                 </tbody>
             </table>

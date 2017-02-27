@@ -27,5 +27,15 @@ class DashboardController{
 //        return view('dashboard');
     }
 
+    public function addEditWaybill(){
+        $model = new Waybills();
+
+        if (isset($_POST['editWaybill'])) {
+//            $model->editWaybillDashboard();
+            $model->editWaybill();
+        }
+
+    }
+
 }
 
