@@ -97,7 +97,7 @@ $(document).ready(function() {
                             "<td>" + element.consignee + "</td>" +
                             "<td><input type='text' value=''/></td>" +
                             "<td class='edit'><a href='waybill?id=" + element.id + "'><input type='button' value='Create POD'/></a></td>" +
-                            "<td>X</td></tr>"
+                            "<td style='visibility: hidden'>"+ element.manifest_no+"</td></tr>"
                         );
                     })
                 };
