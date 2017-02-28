@@ -362,6 +362,9 @@ table.dataTable tbody tr a {
     color: #69BE28;
 }
 
+.buttonInside{
+    width: 30%;
+}
 .dataTables_wrapper .dataTables_paginate {
     float: right;
     text-align: right;

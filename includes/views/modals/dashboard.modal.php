@@ -60,7 +60,7 @@
                         <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control" name="remarks" value="">
-                            <input type="hidden" class="form-control" id="manifestId" name="manifestId" value="<?php echo htmlentities($manifests->id)?>">
+                            <input type="hidden" class="form-control maniNo" id="manifestId" name="manifestId" value="">
                         </div>
                     </div>
 

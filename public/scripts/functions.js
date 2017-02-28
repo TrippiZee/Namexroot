@@ -51,6 +51,8 @@ $(document).ready(function() {
     });
     $(".time").timepicker();
 
+    $(".addWaybillDashboard").hide();
+
     $(".getRowText").click(function () {
         getRowData($(this));
     });
@@ -65,6 +67,7 @@ $(document).ready(function() {
         var remarks = element.closest('tr').find('td.remarks').text();
         var date = element.closest('tr').find('td.date').text();
         var id = element.closest('tr').find('td.id').text();
+        //var manifestId = element.closest('tr').find('td.manifestId').text();
         $(".modalWaybillNO").val(waybillNo);
         $(".modalShipper").val(shipper);
         $(".modalConsignee").val(consignee);
@@ -74,11 +77,15 @@ $(document).ready(function() {
         $(".modalRemarks").val(remarks);
         $(".modalDate").val(date);
         $(".modalId").val(id);
+        //$(".modalmanifestId").val(manifestId);
     }
 
     $(".dashboardGetWaybill").click(function(){
+        $(".addWaybillDashboard").show();
+
         console.log("clicked");
         var manifestId = $(this).closest('tr').find('td.manifestId').text();
+        $(".maniNo").val(manifestId);
         console.log(manifestId);
         $.ajax({
             url:'dashboardManifestWaybills',
@@ -91,21 +98,20 @@ $(document).ready(function() {
                 var data = JSON.parse(response);
                 subcat.empty();
                 if (data.length == 0){
-                    subcat.append("<tr><td>NO WAYBILLS EXIST - CREATE A NEW ONE?</td></tr>");
+                    subcat.append("<tr><td></td><td></td><td colspan='4'><h4>NO WAYBILLS EXIST - CREATE A NEW ONE?</h4></td></tr>");
                 }else{
                     $.each(data, function(index,element) {
                         subcat.append("<tr><td class='waybillNo getRowTextDash'><a href='#' data-toggle='modal' data-target='#editWaybillDashboard' data-waybillNo='element.waybill_no'>" + element.waybill_no + "</a></td>" +
                             "<td class='date'>" + element.date + "</td>" +
                             "<td class='shipper'>" + element.shipper + "</td>" +
                             "<td class='consignee'>" + element.consignee + "</td>" +
-                            "<td><input type='text' value=''/></td>" +
+                            "<td><input type='text' class='buttonInside' value=''/><button>Update</button></td>" +
                             "<td class='edit'><a href='waybill?id=" + element.id + "'><input type='button' value='Create POD'/></a></td>" +
-                            "<td  class='qty' style='visibility: hidden;width:1px'>"+ element.qty+"</td>" +
-                            "<td  class='weight' style='visibility: hidden;width:1px'>"+ element.weight+"</td>" +
-                            "<td  class='type' style='visibility: hidden;width:1px'>"+ element.type+"</td>" +
-                            "<td  class='remarks' style='visibility: hidden;width:1px'>"+ element.remarks+"</td>" +
-                            "<td  class='id' style='visibility: hidden;width:1px'>"+ element.id+"</td>" +
-                            "<td  class='id' style='visibility: hidden;width:1px'>"+ element.manifest_no+"</td></tr>"
+                            "<td  class='qty' style='display:none'>"+ element.qty+"</td>" +
+                            "<td  class='weight' style='display:none'>"+ element.weight+"</td>" +
+                            "<td  class='type' style='display:none'>"+ element.type+"</td>" +
+                            "<td  class='remarks' style='display:none'>"+ element.remarks+"</td>" +
+                            "<td  class='id' style='display:none'>"+ element.id+"</td></tr>"
                         );
                     })
                 };
@@ -117,6 +123,10 @@ $(document).ready(function() {
         getRowData($(this));
     });
 
+    //$(".addManifestDashboard").click(function(){
+    //    var manifestId = element.closest('tr').find('td.manifestId').text();
+    //    $(".modalWaybillNO").val(waybillNo);
+    //});
 
 
 });
