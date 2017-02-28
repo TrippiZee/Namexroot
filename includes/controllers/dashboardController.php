@@ -31,8 +31,9 @@ class DashboardController{
         $model = new Waybills();
 
         if (isset($_POST['editWaybill'])) {
-//            $model->editWaybillDashboard();
-            $model->editWaybill();
+            $model->editWaybillDashboard();
+        } elseif (isset($_POST['createWaybill'])){
+            $model->addWaybillDashboard();
         }
 
     }

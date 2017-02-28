@@ -123,10 +123,9 @@ $(document).ready(function() {
         getRowData($(this));
     });
 
-    //$(".addManifestDashboard").click(function(){
-    //    var manifestId = element.closest('tr').find('td.manifestId').text();
-    //    $(".modalWaybillNO").val(waybillNo);
-    //});
+    $("button.buttonInside").click(function(){
+        console.log("clicked location button")
+    });
 
 
 });

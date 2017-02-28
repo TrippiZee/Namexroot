@@ -4,14 +4,21 @@ namespace Includes\Controllers;
 
 use Includes\App;
 use Includes\Models\Pod;
+use Includes\Models\Services;
+
 
 class PodController{
 
     public function allPods(){
 
         global $connection;
+        $pdo = App::get('pdo');
 
-        return view('pod',['connection'=>$connection]);
+        $services = new Services();
+        $getServices = $services->getServices($pdo);
+
+
+        return view('pod',['connection'=>$connection,'services'=>$getServices]);
 
     }
 

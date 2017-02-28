@@ -363,7 +363,7 @@ table.dataTable tbody tr a {
 }
 
 .buttonInside{
-    width: 30%;
+    /*width: 30%;*/
 }
 .dataTables_wrapper .dataTables_paginate {
     float: right;

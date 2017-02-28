@@ -7,10 +7,11 @@ require 'modals/dashboard.modal.php';
 ?>
 <div class="col-sm-11 main">
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-5">
+        <div class="col-sm-2 col-sm-offset-4">
             <h1 class="dashHeading">Daily Tasks:</h1>
         </div>
     </div>
+    <hr>
     <div class="row ">
         <div class="col-sm-5">
             <h1>Manifests for Today(<?= $currentDay; ?>):</h1>

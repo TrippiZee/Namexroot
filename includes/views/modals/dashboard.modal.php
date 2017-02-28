@@ -11,7 +11,7 @@
                 <h4 class="modal-title">Create New Waybill</h4>
             </div>
             <div class="modal-body">
-                <form action="waybill" method="post">
+                <form action="waybillDash" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Waybill Number</label>

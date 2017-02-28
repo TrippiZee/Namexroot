@@ -111,6 +111,7 @@ class Waybills{
         redirect_to('manifest?id='.$manifestId);
 
     }
+
     public function editWaybillDashboard(){
         $pdo = App::get('pdo');
 
@@ -127,6 +128,24 @@ class Waybills{
         $statement = $pdo->prepare("UPDATE manifest_details SET waybill_no = '{$waybill_no}',date = '{$date}', shipper = '{$shipper}', consignee = '{$consignee}', qty = '{$qty}', type = '{$type}',weight = '{$weight}', remarks = '{$remarks}' WHERE id = '{$id}' LIMIT 1");
         $statement->execute();
         redirect_to('/');
+    }
+
+    public function addWaybillDashboard(){
+        $pdo = App::get('pdo');
+
+        $waybill_no = $_POST['number'];
+        $date = $_POST['date'];
+        $shipper = strtoupper($_POST['shipper']);
+        $consignee = strtoupper($_POST['consignee']);
+        $qty = $_POST['qty'];
+        $type = strtoupper($_POST['type']);
+        $remarks = strtoupper($_POST['remarks']);
+        $weight = $_POST['weight'];
+        $id = $_POST['manifestId'];
+
+        $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks) VALUES('{$id}','{$waybill_no}','{$date}','{$shipper}','{$consignee}','{$qty}','{$weight}','{$type}','{$remarks}')");
+        $statement->execute();
+        redirect_to("/");
 
     }
 

@@ -10,7 +10,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add New Customer</h4>
+                <h4 class="modal-title">Edit POD</h4>
             </div>
             <div class="modal-body">
                 <form action="#" method="post">
@@ -49,7 +49,14 @@
                     <div class="form-group row">
                         <label for="type" class="col-sm-2 col-form-label">Type</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="type" value="<?php echo htmlentities($pod['type'])?>">
+                            <select name="type" >
+                                <option selected value="<?php echo htmlentities($pod['type'])?>"><?php echo htmlentities($pod['type'])?></option>
+                                <?php foreach($services as $key => $service){?>
+                                    <option value="<?php echo $service->type;?>"><?php echo $service->type;?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                         <label for="remarks" class="col-sm-2 col-form-label">Remarks</label>
                         <div class="col-sm-4">
