@@ -34,6 +34,7 @@ $router->post('checkUser','SystemController@checkUser');
 $router->get('dashboardManifestWaybills','WaybillController@getManifestWaybillsDashboard');
 
 $router->post('updateLocation','WaybillController@updateLocation');
+$router->post('finalise','ManifestController@finalise');
 
 $router->post('ajaxCustomer','CustomerController@filterCustomers');
 $router->post('ajaxManifest','ManifestController@filterManifests');

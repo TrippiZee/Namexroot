@@ -24,9 +24,10 @@ require 'modals/dashboard.modal.php';
                                     <td>'.$manifests->driver.'</td>
                                     <td>'.$manifests->reg_no.'</td>
                                     <td><a href="manifest?id='.$manifests->id.'"><input type="button" value="Details"></a></td>
-                                    <td><a><input type="button" value="Finalise"></a></td>
+                                    <td><a><input type="button" class="finalise" value="Finalise"></a></td>
                                     <td><a href="print_manifest?print_id='.$manifests->id.'" target="_BLANK"><input type="button" value="Print Manifest"></a></td>
                                     <td class="manifestId" style="display:none">'.$manifests->id.'</td>
+                                    <td class="finaliseParam" style="display:none">'.$manifests->finalised.'</td>
                                 </tr>';
                         } ?>
                 </tbody>

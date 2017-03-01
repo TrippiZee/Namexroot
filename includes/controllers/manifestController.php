@@ -76,6 +76,13 @@ class ManifestController {
         }
     }
 
+    public function finalise(){
+        $model = new Manifest();
+        if (isset($_POST['id'])) {
+            $model->finaliseManifest();
+            }
+        }
+
     public function delManifest(){
 
         $model = new Manifest();

@@ -85,9 +85,19 @@ class Manifest
         $pdo = App::get('pdo');
         $date = Carbon::now();
 
-        $statement = $pdo->prepare("SELECT * FROM manifest WHERE date = '{$date->toDateString()}' AND finalised = 0");
+        $statement = $pdo->prepare("SELECT * FROM manifest WHERE date = '{$date->toDateString()}'");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
+    }
+
+    public function finaliseManifest(){
+        $pdo = App::get('pdo');
+
+        $id = $_POST['id'];
+        $statement = $pdo->prepare("UPDATE manifest SET finalised = 1 WHERE id = '{$id}' LIMIT 1");
+        $statement->execute();
+
+        echo 'success';
     }
 
 }

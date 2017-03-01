@@ -16,6 +16,7 @@
             } else if($query_num_rows ==1) {
                     $id = $query_run->fetch_assoc()['id'];
                     $_SESSION['user_id'] = $id;
+//                $_SESSION['expire'] = time() + 60;
                 redirect_to('/');
 //                require $router->redirect($uri);
                 }

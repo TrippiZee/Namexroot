@@ -83,6 +83,9 @@ $(document).ready(function() {
     $(".dashboardGetWaybill").click(function(){
         $(".addWaybillDashboard").show();
         var manifestId = $(this).closest('tr').find('td.manifestId').text();
+        var finalised = $(this).closest('tr').find('td.finaliseParam').text();
+        console.log("finalised = "+finalised);
+
         $(".maniNo").val(manifestId);
         $.ajax({
             url:'dashboardManifestWaybills',
@@ -141,5 +144,23 @@ $(document).ready(function() {
         });
     });
 
+    $(".finalise").click(function(){
+        var id = $(this).closest('tr').find('td.manifestId').text();
+        console.log("id value = "+id);
 
+        $.ajax({
+            url:'finalise',
+            type:'post',
+            data:{
+                id:id
+            },
+            success:function(){
+                alert('Waybill Finalised')
+            }
+        });
+    });
+
+    $(".addRowButton").click(function(){
+        $("#dimensions").append('<button type="button" class="col-sm-2 addRowButton">Add New Row</button><label for="Lenght" class="col-sm-1 col-form-label">Length</label><div class="col-sm-2"><input type="text" class="form-control" name="length" value=""></div><label for="width" class="col-sm-1 col-form-label">Width</label><div class="col-sm-2"><input type="text" class="form-control" name="width" value=""></div><label for="height" class="col-sm-1 col-form-label">Height</label><div class="col-sm-2"><input type="text" class="form-control" name="height" value=""></div>');
+    });
 });
