@@ -11,6 +11,7 @@ $router->get('reports','CustomerController@allCustomers');
 $router->get('user','UserController@allUsers');
 $router->get('logout','SystemController@logout');
 $router->get('print_manifest','ManifestController@printManifest');
+$router->get('print_invoice','WaybillController@printInvoice');
 
 $router->get('del_customer','CustomerController@delCustomer');
 $router->get('del_manifest','ManifestController@delManifest');
@@ -31,6 +32,8 @@ $router->post('user','UserController@addEditUser');
 $router->post('checkUser','SystemController@checkUser');
 
 $router->get('dashboardManifestWaybills','WaybillController@getManifestWaybillsDashboard');
+
+$router->post('updateLocation','WaybillController@updateLocation');
 
 $router->post('ajaxCustomer','CustomerController@filterCustomers');
 $router->post('ajaxManifest','ManifestController@filterManifests');

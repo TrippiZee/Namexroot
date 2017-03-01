@@ -85,6 +85,17 @@ class WaybillController{
 
     }
 
+    public function updateLocation(){
+        $model = new Waybills();
+        $model->updateLocation();
+    }
+
+    public function printInvoice(){
+        global $connection;
+        return pdf('print_invoice',['connection'=>$connection]);
+    }
+
+
     public function delWaybill(){
 
         $model = new Waybills();

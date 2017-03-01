@@ -7,7 +7,7 @@ require 'modals/dashboard.modal.php';
 ?>
 <div class="col-sm-11 main">
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-4">
+        <div class="col-sm-2 col-sm-offset-5">
             <h1 class="dashHeading">Daily Tasks:</h1>
         </div>
     </div>
@@ -42,7 +42,7 @@ require 'modals/dashboard.modal.php';
         <div class="col-sm-7">
             <h1>Waybills</h1>
             <table class="table table-striped dataTable default initialiseInjectedHTML">
-                <thead><tr><th>Waybill No</th><th>Date</th><th>Shipper</th><th>Consignee</th><th>Location</th><th>Create POD</th></tr></thead>
+                <thead><tr><th>Waybill No</th><th>Date</th><th>Shipper</th><th>Consignee</th><th>Location</th><th>Create POD</th><th>Print Invoice</th></tr></thead>
                 <tbody class="waybillOfSelectedManifest">
                 </tbody>
             </table>

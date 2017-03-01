@@ -46,9 +46,7 @@ class Waybills{
         $statement = $pdo->prepare('SELECT * FROM manifest_details WHERE manifest_no = "'.$manifestId.'"');
         $statement->execute();
 
-//        return array($statement->fetchAll(PDO::FETCH_CLASS));
         $data =  $statement->fetchAll(PDO::FETCH_CLASS);
-//        die(array($data));
         echo json_encode($data);
 
     }
@@ -95,7 +93,7 @@ class Waybills{
     public function editWaybill(){
         $pdo = App::get('pdo');
 
-        $waybill_no = $_POST['number'];
+        $waybill_no = ($_POST['number']);
         $date = $_POST['date'];
         $shipper = strtoupper($_POST['shipper']);
         $consignee = strtoupper($_POST['consignee']);
@@ -146,6 +144,17 @@ class Waybills{
         $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks) VALUES('{$id}','{$waybill_no}','{$date}','{$shipper}','{$consignee}','{$qty}','{$weight}','{$type}','{$remarks}')");
         $statement->execute();
         redirect_to("/");
+    }
+
+    public function updateLocation(){
+        $pdo = App::get('pdo');
+
+        $location = $_POST['location'];
+        $id = $_POST['id'];
+
+        $statement = $pdo->prepare("UPDATE manifest_details SET location = '{$location}' WHERE id = '{$id}' LIMIT 1");
+        $statement->execute();
+        echo "success";
 
     }
 
