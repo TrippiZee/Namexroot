@@ -174,31 +174,20 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="dimensions" class="col-sm-2 col-form-label">Number of Parcels</label>
-                        <div class="col-sm-4">
-                            <select name="dimensions">
-                            <?php
-                            for($i = 0;$i <= 100; $i++){
-                                echo "<option value=".$i.">$i</option>";
-                            }
-                             ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row" id="dimensions">
+                    <hr>
+                    <div class="form-group row dimensions">
+                        <button type="button" class="col-sm-2 addRowButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp Add Row</button>
                         <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control date" name="length" value="">
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="length" value="">
                         </div>
                         <label for="width" class="col-sm-1 col-form-label">Width</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <input type="text" class="form-control" name="width" value="">
                         </div>
                         <label for="height" class="col-sm-1 col-form-label">Height</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control time" name="height" value="">
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="height" value="">
                         </div>
                     </div>
             </div>
@@ -277,20 +266,6 @@
                             <input type="text" class="form-control modalRemarks" name="remarks" value="">
                             <input type="hidden" class="form-control modalId" id="waybillId" name="waybillId" value="">
                             <input type="hidden" class="form-control" id="manifestId" name="manifestId" value="<?php echo htmlentities($manifest['id'])?>">
-                        </div>
-                    </div>
-                    <div class="form-group row" id="dimensions">
-                        <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="length" value="">
-                        </div>
-                        <label for="width" class="col-sm-1 col-form-label">Width</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="width" value="">
-                        </div>
-                        <label for="height" class="col-sm-1 col-form-label">Height</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="height" value="">
                         </div>
                     </div>
             </div>
