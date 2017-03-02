@@ -50,12 +50,6 @@ require 'modals/dashboard.modal.php';
             <hr>
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
-                    <button href="#manifestTracking" data-toggle="modal"  class="btn btn-success col-xs-12 btn-narrow">Update Tracking</button>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
                     <button href="#addWaybillDashboard" data-toggle="modal"  class="btn btn-success col-xs-12 btn-narrow addWaybillDashboard">Add New Waybill</button>
                 </div>
             </div>

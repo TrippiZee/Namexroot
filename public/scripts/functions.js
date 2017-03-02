@@ -107,7 +107,7 @@ $(document).ready(function() {
                             "<td class='consignee'>" + element.consignee + "</td>" +
                             "<td><input type='text' class='location' value='"+element.location+"'/><button class='updateLocation'>Update</button></td>" +
                             "<td class='edit'><a href='waybill?id=" + element.id + "'><input type='button' value='Create POD'/></a></td>" +
-                            "<td class='edit'><a href='print_invoice?print_id=" + element.id + "'><input type='button' value='Print Invoice'/></a></td>" +
+                            "<td class='edit'><a target='_BLANK' href='print_invoice?print_id=" + element.id + "'><input type='button' value='Print Invoice'/></a></td>" +
                             "<td class='qty' style='display:none'>"+ element.qty+"</td>" +
                             "<td class='weight' style='display:none'>"+ element.weight+"</td>" +
                             "<td class='type' style='display:none'>"+ element.type+"</td>" +

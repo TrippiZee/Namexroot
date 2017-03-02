@@ -264,7 +264,7 @@
                         <label for="type" class="col-sm-2 col-form-label">Type</label>
                         <div class="col-sm-4">
                             <select name="type" class="modalType">
-                                <option selected value="<?php echo htmlentities($data['type'])?>"></option>
+                                <option selected value=""></option>
                                 <?php foreach($services as $key => $service){?>
                                     <option value="<?php echo $service->type;?>"><?php echo $service->type;?></option>
                                 <?php
@@ -279,7 +279,20 @@
                             <input type="hidden" class="form-control" id="manifestId" name="manifestId" value="<?php echo htmlentities($manifest['id'])?>">
                         </div>
                     </div>
-
+                    <div class="form-group row" id="dimensions">
+                        <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="length" value="">
+                        </div>
+                        <label for="width" class="col-sm-1 col-form-label">Width</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="width" value="">
+                        </div>
+                        <label for="height" class="col-sm-1 col-form-label">Height</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="height" value="">
+                        </div>
+                    </div>
             </div>
 
             <div class="modal-footer">

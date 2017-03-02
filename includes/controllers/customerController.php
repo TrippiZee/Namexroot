@@ -13,6 +13,11 @@ class CustomerController {
         return view('customer');
     }
 
+    public function costingMain(){
+
+        return view('costing');
+    }
+
     public function filterCustomers(){
 
         $pdo = App::get('pdo');
