@@ -10,7 +10,7 @@
                 <li><a href="pod">POD</a></li>
 <!--                <li><a href="tracking">Tracking</a></li>-->
                 <?php
-                if (getuserfield('role') == 'admin'){
+                if (getuserfield('role') == 'ADMIN'){
                     echo '<li><a href="reports">Reports</a></li>';
                     echo '<li><a href="costing">Costing</a></li>';
                     echo '<li><a href="user">User</a></li>';

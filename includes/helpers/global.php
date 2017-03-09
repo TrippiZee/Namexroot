@@ -1,6 +1,6 @@
 <?php
 ob_start();
-session_set_cookie_params(60);
+//session_set_cookie_params(60);
 session_start();
 
 function view($name,$data = []){

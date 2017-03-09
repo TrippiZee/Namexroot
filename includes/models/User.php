@@ -28,7 +28,7 @@ class User
     public function addUser(){
         $pdo = App::get('pdo');
         $user_name = strtoupper($_POST['username']);
-        $password = strtoupper($_POST['password']);
+        $password = ($_POST['password']);
         $name = strtoupper($_POST['name']);
         $surname = strtoupper($_POST['surname']);
         $role = strtoupper($_POST['role']);
