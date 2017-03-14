@@ -177,7 +177,7 @@
                     <hr>
                     <div class="form-group row dimensions">
                         <button type="button" class="col-sm-2 addRowButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp Add Row</button>
-                        <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
+                        <label for="Length" class="col-sm-1 col-form-label">Length</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" name="length" value="">
                         </div>
