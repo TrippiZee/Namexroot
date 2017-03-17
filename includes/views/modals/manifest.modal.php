@@ -179,15 +179,15 @@
                         <button type="button" class="col-sm-2 addRowButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp Add Row</button>
                         <label for="Length" class="col-sm-1 col-form-label">Length</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" name="length" value="">
+                            <input type="text" class="form-control" name="length[]" value="">
                         </div>
                         <label for="width" class="col-sm-1 col-form-label">Width</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" name="width" value="">
+                            <input type="text" class="form-control" name="width[]" value="">
                         </div>
                         <label for="height" class="col-sm-1 col-form-label">Height</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" name="height" value="">
+                            <input type="text" class="form-control" name="height[]" value="">
                         </div>
                     </div>
             </div>

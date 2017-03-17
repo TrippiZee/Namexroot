@@ -9,11 +9,18 @@ use Includes\Models\Manifest;
 use Includes\Models\Waybills;
 use Includes\Models\Pod;
 use Includes\Models\Services;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 
 class DashboardController{
 
     public function dashboard(){
+
+        $logger = new Logger('debugLog');
+        $logger->pushHandler(new StreamHandler(__DIR__.'/debug.log', Logger::DEBUG));
+
+        $logger->info("Arrived at dashboard Controlller");
 
         $pdo = App::get('pdo');
 

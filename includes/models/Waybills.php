@@ -4,6 +4,8 @@ namespace Includes\Models;
 
 use PDO;
 use Includes\App;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class Waybills{
 
@@ -72,8 +74,15 @@ class Waybills{
     }
 
     public function createWaybill(){
+
+        $logger = new Logger('debugLog');
+        $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
+
+        $logger->info("dimensions = ",array($_POST));
+
         $pdo = App::get('pdo');
 
+        $dimensions=array();
         $waybill_no = $_POST['number'];
         $date = $_POST['date'];
         $shipper = strtoupper($_POST['shipper']);
@@ -83,25 +92,51 @@ class Waybills{
         $remarks = strtoupper($_POST['remarks']);
         $weight = $_POST['weight'];
         $id = $_POST['manifestId'];
-        $length = $_POST['length'];
-        $width = $_POST['width'];
-        $height = $_POST['height'];
+        foreach($_POST['length']as $length=>$value) {
+                $dimensions['length'][] = $value;
+        }
+        foreach($_POST['width']as $width=>$value) {
+            $dimensions['width'][] = $value;
+        }
+        foreach($_POST['height']as $height=>$value) {
+            $dimensions['height'][] = $value;
+        }
 
-        $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks) VALUES(:id,:waybill_no,:date,:shipper,:consignee,:qty,:weight,:type,:remarks);
-                                    INSERT INTO dimensions (waybill_no,lenght,width,height) VALUES(:waybill_no,:lenght,:width,:height)");
-        $statement->bindValue(':id',$id,PDO::PARAM_INT);
-        $statement->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
-        $statement->bindValue(':date',$date,PDO::PARAM_STR);
-        $statement->bindValue(':shipper',$shipper.PDO::PARAM_STR);
-        $statement->bindValue(':consignee',$consignee,PDO::PARAM_STR);
-        $statement->bindValue(':qty',$qty,PDO::PARAM_INT);
-        $statement->bindValue(':weight',$weight,PDO::PARAM_INT);
-        $statement->bindValue(':type',$type,PDO::PARAM_STR);
-        $statement->bindValue(':remarks',$remarks,PDO::PARAM_STR);
-        $statement->bindValue(':lenght',$length,PDO::PARAM_INT);
-        $statement->bindValue(':width',$width,PDO::PARAM_INT);
-        $statement->bindValue(':height',$height,PDO::PARAM_INT);
-        $statement->execute();
+        try{
+            $pdo->beginTransaction();
+            $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks) VALUES(:id,:waybill_no,:date,:shipper,:consignee,:qty,:weight,:type,:remarks)");
+            $statement->bindValue(':id',$id,PDO::PARAM_INT);
+            $statement->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
+            $statement->bindValue(':date',$date,PDO::PARAM_STR);
+            $statement->bindValue(':shipper',$shipper.PDO::PARAM_STR);
+            $statement->bindValue(':consignee',$consignee,PDO::PARAM_STR);
+            $statement->bindValue(':qty',$qty,PDO::PARAM_INT);
+            $statement->bindValue(':weight',$weight,PDO::PARAM_INT);
+            $statement->bindValue(':type',$type,PDO::PARAM_STR);
+            $statement->bindValue(':remarks',$remarks,PDO::PARAM_STR);
+//            $statement->bindValue(':length',$length,PDO::PARAM_INT);
+//            $statement->bindValue(':width',$width,PDO::PARAM_INT);
+//            $statement->bindValue(':height',$height,PDO::PARAM_INT);
+            $statement->execute();
+
+            $statement = $pdo->prepare("INSERT INTO dimensions (waybill_no,length,width,height) VALUES(:waybill_no,:length,:width,:height)");
+            foreach($dimensions as $key=>$value){
+                $logger->info("loopData ",array($key=>$value));
+                $statement->bindValue(':length',$value,PDO::PARAM_INT);
+                $statement->bindValue(':width',$weight,PDO::PARAM_INT);
+                $statement->bindValue(':height',$weight,PDO::PARAM_INT);
+
+                $statement->execute();
+            }
+
+            $pdo->commit();
+
+        }catch (\PDOException $ex){
+            $logger->info("Catch Ex: ".$ex);
+            $pdo->rollBack();
+            echo $ex->getMessage();
+        }
+
         redirect_to("manifest?id=".$id);
 
     }

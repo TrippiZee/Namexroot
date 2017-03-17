@@ -85,7 +85,7 @@ include "includes/views/layout/header.php";
                 echo '<td class="type">'.$data['type'].'</td>';
                 echo '<td class="remarks">'.$data['remarks'].'</td>';
                 echo '<td class="edit getRowText"><a><input type="button" data-toggle="modal" data-target="#editWaybill" value="Edit Waybill"/></a></td>';
-                if (getuserfield('role') == 'admin'){
+                if (getuserfield('role') == 'ADMIN'){
                     echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';}
                 echo '<td class="edit getRowText"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td>';
                 echo '<td style="visibility: hidden" class="date">'.$data['date'].'</td>';
