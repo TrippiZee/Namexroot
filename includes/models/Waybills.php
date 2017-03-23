@@ -78,11 +78,11 @@ class Waybills{
         $logger = new Logger('debugLog');
         $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
 
-        $logger->info("dimensions = ",array($_POST));
-
         $pdo = App::get('pdo');
 
-        $dimensions=array();
+        $length=array();
+        $width=array();
+        $height=array();
         $waybill_no = $_POST['number'];
         $date = $_POST['date'];
         $shipper = strtoupper($_POST['shipper']);
@@ -92,16 +92,15 @@ class Waybills{
         $remarks = strtoupper($_POST['remarks']);
         $weight = $_POST['weight'];
         $id = $_POST['manifestId'];
-        foreach($_POST['length']as $length=>$value) {
-                $dimensions['length'][] = $value;
+        foreach($_POST['length']as $value) {
+            array_push($length,$value);
         }
-        foreach($_POST['width']as $width=>$value) {
-            $dimensions['width'][] = $value;
+        foreach($_POST['width']as $value) {
+            array_push($width,$value);
         }
-        foreach($_POST['height']as $height=>$value) {
-            $dimensions['height'][] = $value;
+        foreach($_POST['height']as $value) {
+            array_push($height,$value);
         }
-
         try{
             $pdo->beginTransaction();
             $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks) VALUES(:id,:waybill_no,:date,:shipper,:consignee,:qty,:weight,:type,:remarks)");
@@ -114,18 +113,16 @@ class Waybills{
             $statement->bindValue(':weight',$weight,PDO::PARAM_INT);
             $statement->bindValue(':type',$type,PDO::PARAM_STR);
             $statement->bindValue(':remarks',$remarks,PDO::PARAM_STR);
-//            $statement->bindValue(':length',$length,PDO::PARAM_INT);
-//            $statement->bindValue(':width',$width,PDO::PARAM_INT);
-//            $statement->bindValue(':height',$height,PDO::PARAM_INT);
             $statement->execute();
 
             $statement = $pdo->prepare("INSERT INTO dimensions (waybill_no,length,width,height) VALUES(:waybill_no,:length,:width,:height)");
-            foreach($dimensions as $key=>$value){
-                $logger->info("loopData ",array($key=>$value));
-                $statement->bindValue(':length',$value,PDO::PARAM_INT);
-                $statement->bindValue(':width',$weight,PDO::PARAM_INT);
-                $statement->bindValue(':height',$weight,PDO::PARAM_INT);
 
+            for($i=0;$i <= count($length)-1;$i++){
+
+                $statement->bindValue(':length',$length[$i],PDO::PARAM_INT);
+                $statement->bindValue(':width',$width[$i],PDO::PARAM_INT);
+                $statement->bindValue(':height',$height[$i],PDO::PARAM_INT);
+                $statement->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
                 $statement->execute();
             }
 
@@ -157,6 +154,8 @@ class Waybills{
 
         $statement = $pdo->prepare("UPDATE manifest_details SET waybill_no = '{$waybill_no}',date = '{$date}', shipper = '{$shipper}', consignee = '{$consignee}', qty = '{$qty}', type = '{$type}',weight = '{$weight}', remarks = '{$remarks}' WHERE id = '{$id}' LIMIT 1");
         $statement->execute();
+
+        if ($_POST[''])
         redirect_to('manifest?id='.$manifestId);
 
     }
