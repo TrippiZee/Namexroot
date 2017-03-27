@@ -70,10 +70,10 @@ class WaybillController{
         if (isset($_POST['createPOD'])) {
             $model->createPod();
         }
-        elseif (isset($_POST['createWaybill'])) {
+        elseif (isset($_POST['createWaybill']) ||isset($_POST['createWaybillDash'])) {
             $model->createWaybill();
         }
-        if (isset($_POST['editWaybill'])) {
+        if (isset($_POST['editWaybill']) || isset($_POST['editWaybillDash'])) {
             $model->editWaybill();
         }
     }

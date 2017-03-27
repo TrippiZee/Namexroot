@@ -23,7 +23,7 @@ $router->post('customer','CustomerController@addEditCustomer');
 $router->post('manifest','ManifestController@addEditManifest');
 $router->post('','ManifestController@addEditManifest');
 $router->post('waybill','WaybillController@addEditWaybill');
-$router->post('waybillDash','DashboardController@addEditWaybill');
+//$router->post('waybillDash','DashboardController@addEditWaybill');
 $router->post('pod','PodController@addEditPod');
 $router->post('tracking','CustomerController@allCustomers');
 $router->post('costing','CustomerController@allCustomers');

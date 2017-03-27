@@ -11,7 +11,7 @@
                 <h4 class="modal-title">Create New Waybill</h4>
             </div>
             <div class="modal-body">
-                <form action="waybillDash" method="post">
+                <form action="waybill" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Waybill Number</label>
@@ -69,22 +69,22 @@
                         <button type="button" class="col-sm-2 addRowButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp Add Row</button>
                         <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" name="length" value="">
+                            <input type="text" class="form-control" name="length[]" value="">
                         </div>
                         <label for="width" class="col-sm-1 col-form-label">Width</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" name="width" value="">
+                            <input type="text" class="form-control" name="width[]" value="">
                         </div>
                         <label for="height" class="col-sm-1 col-form-label">Height</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" name="height" value="">
+                            <input type="text" class="form-control" name="height[]" value="">
                         </div>
                     </div>
             </div>
 
             <div class="modal-footer">
                 <div class="form-group row">
-                    <input type="submit" name="createWaybill" value="Create Waybill" />
+                    <input type="submit" name="createWaybillDash" value="Create Waybill" />
                     <input Type="button" VALUE="Cancel" data-dismiss="modal">
 
                 </div>
@@ -106,7 +106,7 @@
                 <h4 class="modal-title">Edit Waybill</h4>
             </div>
             <div class="modal-body">
-                <form action="waybillDash" method="post">
+                <form action="waybill" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Waybill Number</label>
@@ -159,25 +159,27 @@
                         </div>
                     </div>
 
-                    <div class="form-group row" id="dimensions">
+                    <hr>
+                    <div class="form-group row dimensions">
+                        <button type="button" class="col-sm-2 addRowButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp Add Row</button>
                         <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="length" value="">
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="length[]" value="">
                         </div>
                         <label for="width" class="col-sm-1 col-form-label">Width</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="width" value="">
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="width[]" value="">
                         </div>
                         <label for="height" class="col-sm-1 col-form-label">Height</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" name="height" value="">
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="height[]" value="">
                         </div>
                     </div>
             </div>
 
             <div class="modal-footer">
                 <div class="form-group row">
-                    <input type="submit" name="editWaybill" value="Edit Waybill" />
+                    <input type="submit" name="editWaybillDash" value="Edit Waybill" />
                     <input Type="button" VALUE="Cancel" data-dismiss="modal">
 
                 </div>
