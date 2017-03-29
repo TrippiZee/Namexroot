@@ -172,3 +172,68 @@
         </div>
     </div>
 </div>
+
+<!-- -----------------------------Rates--------------------------------------------- -->
+
+<div id="addRates" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add/Edit Rates</h4>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post">
+
+                    <div class="form-group row">
+                        <label for="docFee" class="col-sm-2 col-form-label">Documentation Fee</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="docFee" name="docFee">
+                        </div>
+                        <label for="fuel" class="col-sm-2 col-form-label">Fuel Surcharge</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="fuel" name="fuel">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="saturday" class="col-sm-2 col-form-label">Saturday Deliveries</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="saturday" name="saturday">
+                        </div>
+                        <label for="windhoek" class="col-sm-2 col-form-label">Freight Windhoek</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="windhoek" name="windhoek">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="namibia" class="col-sm-2 col-form-label">Freight Namibia</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="namibia" name="namibia" value="<?php echo htmlentities($customer['acc_no'])?>">
+                        </div>
+                        <label for="outlying" class="col-sm-2 col-form-label">Outlying Areas</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="outlying" name="outlying">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <input type="hidden" class="form-control" id="acc_no" name="acc_no" value="<?php echo htmlentities($customer['acc_no'])?>">
+                        </div>
+                    </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group row">
+                    <input type="submit" name="add" value="Add" />
+                    <input Type="button" VALUE="Cancel" data-dismiss="modal">
+
+                </div>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>

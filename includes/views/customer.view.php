@@ -39,10 +39,12 @@ include "includes/views/layout/header.php";
             echo '</tr>';
 //            echo '<tr><td class="edit"><a href="edit_customer.php?id='.$customer['id'].'"><input type="button" value="Edit"/></a></td>';
             echo '<tr><td class="edit"><button data-toggle="modal" data-target="#editCustomer" class="btn btn-success col-xs-12 btn-narrow">Edit Customer</button></td>';
-            echo '<tr><td class="edit"><button data-toggle="modal" data-target="#customeRatesr" class="btn btn-success col-xs-12 btn-narrow">Edit Rates</button></td>';
+            echo '<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
             if (getuserfield('role') == 'ADMIN'){
                 echo '<td class="edit"><a href="del_customer?id=' .$customer['id'].'" onclick="return confirm(\'Really Delete?\');"><button class="btn btn-success col-xs-12 btn-narrow">Delete</button></a></td>';}
             echo "</tr>";
+
+            echo '<tr><td class="edit"><button data-toggle="modal" data-target="#addRates" class="btn btn-success col-xs-12 btn-narrow">Add/Edit Rates</button></td></tr>';
             echo '</table>';
 //            echo '</div>';
 
@@ -54,7 +56,16 @@ include "includes/views/layout/header.php";
                     <tr><th>Name</th><th>Account Number</th><th>Address</th><th>City</th><th>Country</th></tr>
                     </thead></table>';
         }
-        require 'modals/customer.modal.php';
+        ?>
+<!--        <hr>-->
+<!--        <div class="row">-->
+<!--        <div class="col-sm-3">-->
+<!--            <br>-->
+<!--            <button data-toggle="modal" data-target="#addRates" class="btn btn-success col-xs-12 btn-narrow">Add/Edit Rates</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+        <?php require 'modals/customer.modal.php';
         ?>
 
 
