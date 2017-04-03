@@ -94,7 +94,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add New Customer</h4>
+                <h4 class="modal-title">Edit Customer</h4>
             </div>
             <div class="modal-body">
                 <form action="#" method="post">
@@ -106,7 +106,7 @@
                         </div>
                         <label for="acc_no" class="col-sm-2 col-form-label">Account Number</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="acc_no" name="acc_no" value="<?php echo htmlentities($customer['acc_no'])?>">
+                            <input type="text" class="form-control" id="acc_no" name="acc_no" value="<?php echo htmlentities($customer['acc_no'])?>" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -190,44 +190,45 @@
                     <div class="form-group row">
                         <label for="docFee" class="col-sm-2 col-form-label">Documentation Fee</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="docFee" name="docFee">
+                            <input type="text" class="form-control" id="docFee" name="docFee" value="<?php echo htmlentities($sundries['documentation_fee'])?>">
                         </div>
                         <label for="fuel" class="col-sm-2 col-form-label">Fuel Surcharge</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="fuel" name="fuel">
+                            <input type="text" class="form-control" id="fuel" name="fuel" value="<?php echo htmlentities($sundries['fuel_surcharge'])?>">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="saturday" class="col-sm-2 col-form-label">Saturday Deliveries</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="saturday" name="saturday">
+                            <input type="text" class="form-control" id="saturday" name="saturday" value="<?php echo htmlentities($sundries['saturday_deliveries'])?>">
                         </div>
                         <label for="windhoek" class="col-sm-2 col-form-label">Freight Windhoek</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="windhoek" name="windhoek">
+                            <input type="text" class="form-control" id="windhoek" name="windhoek" value="<?php echo htmlentities($sundries['freight_windhoek'])?>">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="namibia" class="col-sm-2 col-form-label">Freight Namibia</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="namibia" name="namibia" value="<?php echo htmlentities($customer['acc_no'])?>">
+                            <input type="text" class="form-control" id="namibia" name="namibia" value="<?php echo htmlentities($sundries['freight_namibia'])?>">
                         </div>
                         <label for="outlying" class="col-sm-2 col-form-label">Outlying Areas</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="outlying" name="outlying">
+                            <input type="text" class="form-control" id="outlying" name="outlying" value="<?php echo htmlentities($sundries['outlying_areas'])?>">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <input type="hidden" class="form-control" id="acc_no" name="acc_no" value="<?php echo htmlentities($customer['acc_no'])?>">
+                            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo htmlentities($customer['id'])?>">
                         </div>
                     </div>
             </div>
 
             <div class="modal-footer">
                 <div class="form-group row">
-                    <input type="submit" name="add" value="Add" />
+                    <input type="submit" name="addRates" value="Add" />
                     <input Type="button" VALUE="Cancel" data-dismiss="modal">
 
                 </div>

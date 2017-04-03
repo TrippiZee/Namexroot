@@ -20,6 +20,11 @@ include "includes/views/layout/header.php";
 
             $query_result = customer($id);
             $customer = mysqli_fetch_array($query_result);
+            $acc_number = $customer['acc_no'];
+
+            $sundryRecord = getSundries($acc_number);
+            $sundries = mysqli_fetch_array($sundryRecord);
+
 
             echo '<h2>Details:</h2>';
 //            echo '<div class="table-responsive>"';

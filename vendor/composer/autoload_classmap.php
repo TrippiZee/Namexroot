@@ -278,4 +278,5 @@ return array(
     'Symfony\\Component\\Translation\\Util\\ArrayConverter' => $vendorDir . '/symfony/translation/Util/ArrayConverter.php',
     'Symfony\\Component\\Translation\\Writer\\TranslationWriter' => $vendorDir . '/symfony/translation/Writer/TranslationWriter.php',
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
+    'includes\\models\\Sundries' => $baseDir . '/includes/models/Sundries.php',
 );

@@ -9,13 +9,15 @@ class CustomerController {
 
     public function allCustomers(){
 
-
-        return view('customer');
+        $pdo = App::get('pdo');
+//        $sundries = new Sundries();
+//        $getSundries = $sundries->getSundries($pdo);
+        return view('customer',['pdo'=>$pdo]);
     }
 
     public function costingMain(){
 
-        return view('costing');
+        return view('costing',[]);
     }
 
     public function filterCustomers(){
@@ -70,6 +72,9 @@ class CustomerController {
         if (isset($_POST['edit'])) {
             $model->editCustomer();
         }
+        if (isset($_POST['addRates'])) {
+            $model->editRates();
+        }
     }
 
     public function delCustomer(){
@@ -77,7 +82,8 @@ class CustomerController {
         $model = new Customers();
         if (isset($_GET['id'])){
             $id=$_GET['id'];
-            $model->deleteRecord($id);
+            $acc=$_GET[''];
+            $model->deleteRecord($id,$acc);
         }
     }
 

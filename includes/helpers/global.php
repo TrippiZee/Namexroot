@@ -79,6 +79,23 @@ function customer ($id){
     return $customer_result;
 }
 
+//function getSundries($pdo,$acc){
+//    $statement = $pdo->prepare('SELECT * FROM sundries WHERE acc_number=:acc_no');
+//    $statement->bindValue('acc_no',$acc);
+//    $statement->execute();
+//    return $statement->fetchAll(PDO::FETCH_CLASS);
+//
+//}
+function getSundries($id){
+    global $connection;
+
+    $query = "Select * from sundries WHERE acc_number = {$id}";
+    $result = mysqli_query($connection,$query);
+    return $result;
+
+}
+
+
 function pod ($id){
     global $connection;
 

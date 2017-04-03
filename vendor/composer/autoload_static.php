@@ -327,6 +327,7 @@ class ComposerStaticInit819f9842d034e6439b92d992998a92c9
         'Symfony\\Component\\Translation\\Util\\ArrayConverter' => __DIR__ . '/..' . '/symfony/translation/Util/ArrayConverter.php',
         'Symfony\\Component\\Translation\\Writer\\TranslationWriter' => __DIR__ . '/..' . '/symfony/translation/Writer/TranslationWriter.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
+        'includes\\models\\Sundries' => __DIR__ . '/../..' . '/includes/models/Sundries.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
