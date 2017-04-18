@@ -228,8 +228,10 @@ class Waybills{
     public function updateLocation(){
         $pdo = App::get('pdo');
 
-        $location = $_POST['location'];
-        $id = $_POST['id'];
+//        $location = $_POST['location'];
+//        $id = $_POST['id'];
+        $location = $_POST['value'];
+        $id = $_POST['pk'];
 
         $statement = $pdo->prepare("UPDATE manifest_details SET location = :location WHERE id = :id LIMIT 1");
         $statement->bindValue(':location',$location,PDO::PARAM_STR);

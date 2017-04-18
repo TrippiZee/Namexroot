@@ -105,7 +105,8 @@ $(document).ready(function() {
                             "<td class='date'>" + element.date + "</td>" +
                             "<td class='shipper'>" + element.shipper + "</td>" +
                             "<td class='consignee'>" + element.consignee + "</td>" +
-                            "<td><input type='text' class='location' value='"+element.location+"'/><button class='updateLocation'>Update</button></td>" +
+                            "<td><a href='#' class='location' data-type='text' data-pk='" + element.id + "' data-title='Input Location' data-value='" + element.location + "'>" + element.location + "</a></td>" +
+                            //"<td><input type='text' class='location' value='"+element.location+"'/><button class='updateLocation'>Update</button></td>" +
                             "<td class='edit'><a href='waybill?id=" + element.id + "'><input type='button' value='Create POD'/></a></td>" +
                             "<td class='edit'><a target='_BLANK' href='print_invoice?print_id=" + element.id + "'><input type='button' value='Print Invoice'/></a></td>" +
                             "<td class='qty' style='display:none'>"+ element.qty+"</td>" +
@@ -124,26 +125,36 @@ $(document).ready(function() {
         getRowData($(this));
     });
 
-    $(".initialiseInjectedHTML").on('click','.updateLocation',function () {
-        //var location = $('#location').val();
-        //var location = $('.location').find('input').val();
-        var location = $(this).closest('tr').find('td.location').val();
-        var id = $(this).closest('tr').find('td.id').text();
-        console.log("clicked location button value = "+location);
-        console.log("id value = "+id);
-        $.ajax({
-            url:'updateLocation',
-            type:'post',
-            data:{
-                location:location,
-                id:id
-            },
-            success:function(){
-                alert('Location updated')
-            }
-        });
+    $('.location').editable({
+        url : 'updateLocation',
+        ajaxOptions : {
+            type : 'post'
+        },
+        success : function(data, config) {
+        }
     });
 
+
+    //$(".initialiseInjectedHTML").on('click','.updateLocation',function () {
+    //    //var location = $('#location').val();
+    //    //var location = $('.location').find('input').val();
+    //    var location = $(this).closest('tr').find('td.location').text();
+    //    var id = $(this).closest('tr').find('td.id').text();
+    //    console.log("clicked location button value = "+location);
+    //    console.log("id value = "+id);
+    //    $.ajax({
+    //        url:'updateLocation',
+    //        type:'post',
+    //        data:{
+    //            location:location,
+    //            id:id
+    //        },
+    //        success:function(){
+    //            alert('Location updated')
+    //        }
+    //    });
+    //});
+    //
     $(".finalise").click(function(){
         var id = $(this).closest('tr').find('td.manifestId').text();
         console.log("id value = "+id);
