@@ -5,7 +5,7 @@ $router->get('customer','CustomerController@allCustomers');
 $router->get('manifest','ManifestController@allManifests');
 $router->get('waybill','WaybillController@allWaybills');
 $router->get('pod','PodController@allPods');
-//$router->get('tracking','CustomerController@allCustomers');
+$router->get('tracking','LocationController@allWaybills');
 $router->get('costing','CustomerController@costingMain');
 $router->get('reports','ReportsController@reportDashboard');
 $router->get('user','UserController@allUsers');
