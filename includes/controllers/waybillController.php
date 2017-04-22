@@ -4,6 +4,9 @@ namespace Includes\Controllers;
 use Includes\App;
 use Includes\Models\Waybills;
 use Includes\Models\Services;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 
 class WaybillController{
 
@@ -91,6 +94,13 @@ class WaybillController{
     }
 
     public function printInvoice(){
+        $logger = new Logger('debugLog');
+        $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
+
+        $model = new Waybills();
+        $data = $model->getInvoiceDetails();
+
+        $logger->info("Data = ".print_r($data,true));
         global $connection;
         return pdf('print_invoice',['connection'=>$connection]);
     }
