@@ -6,6 +6,7 @@
 <script src="public/scripts/bootstrap.min.js"></script>
 <script src="public/scripts/dataTables.bootstrap.min.js"></script>
 <script src="public/scripts/jquery.dataTables.min.js"></script>
+<script src="public/scripts/bootstrap-editable.js"></script>
 <script src="public/scripts/dataTables.editor.min.js"></script>
 <script src="public/scripts/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 <script src="public/scripts/jquery-ui-timepicker-addon.js"></script>

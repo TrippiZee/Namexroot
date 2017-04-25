@@ -17,6 +17,7 @@
     <link href="public/scripts/jquery-ui-1.12.1/jquery-ui.theme.min.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="public/stylesheets/jquery-ui-timepicker-addon.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="public/stylesheets/style.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="public/stylesheets/bootstrap-editable.css" media="all" rel="stylesheet" type="text/css" />
 
 </head>
 <body>

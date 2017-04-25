@@ -105,11 +105,13 @@ $(document).ready(function() {
                             "<td class='date'>" + element.date + "</td>" +
                             "<td class='shipper'>" + element.shipper + "</td>" +
                             "<td class='consignee'>" + element.consignee + "</td>" +
-                            "<td><a href='#' class='location' data-type='text' data-pk='" + element.id + "' data-title='Input Location' data-value='" + element.location + "'>" + element.location + "</a></td>" +
+                            //"<td><a href='#' class='location' data-type='text' data-title='Input Location' data-value='element.location' data-pk='element.id'>" + element.location + "</a></td>" +
                             //"<td><input type='text' class='location' value='"+element.location+"'/><button class='updateLocation'>Update</button></td>" +
+                            "<td class='location'>"+element.location+"</td>" +
+                            "<td class='edit'><a><button class='updateLocation' data-toggle='modal' data-target='#updateLocation'>Update</button></a></td>" +
                             "<td class='edit'><a href='waybill?id=" + element.id + "'><input type='button' value='Create POD'/></a></td>" +
-                            //"<td class='edit'><a><button data-toggle='modal' data-target='#printInvoice'>Print Invoice</button></a></td>" +
-                            "<td class='edit'><a href='print_invoice?id=" + element.id + "'><input type='button' value='Print Invoice'/></a></td>" +
+                            "<td class='edit invoice'><a><button data-toggle='modal' data-target='#printInvoice'>Print Invoice</button></a></td>" +
+                            //"<td class='edit'><a href='print_invoice?id=" + element.id + "'><input type='button' value='Print Invoice'/></a></td>" +
                             "<td class='qty' style='display:none'>"+ element.qty+"</td>" +
                             "<td class='weight' style='display:none'>"+ element.weight+"</td>" +
                             "<td class='type' style='display:none'>"+ element.type+"</td>" +
@@ -125,40 +127,44 @@ $(document).ready(function() {
     $(".initialiseInjectedHTML").on('click','.getRowTextDash',function () {
         getRowData($(this));
     });
+    $(".initialiseInjectedHTML").on('click','.updateLocation',function () {
+        var location = $(this).closest('tr').find('td.location').text();
+        var id = $(this).closest('tr').find('td.id').text();
+        console.log('location = '+location+' waybillNo = '+ id);
+        $(".modalLocation").val(location);
+        $(".modalLocationId").val(id);
 
-    $('.location').editable({
-        url : 'updateLocation',
-        ajaxOptions : {
-            type : 'post'
-        },
-        success : function(data, config) {
-        }
     });
 
+    $(".initialiseInjectedHTML").on('click','.invoice',function () {
+        var manifestNo = $(this).closest('tr').find('td.waybillNo').text();
+        var id = $(this).closest('tr').find('td.id').text();
+        console.log("id value = "+id);
+        var debtorList = [];
+        $.ajax({
+            url:'debtor',
+            type:'get',
+            data:{
+                id:manifestNo
+            },
+            success:function(response){
+                var subcat = $(".modalSelectPayee");
+                var data = JSON.parse(response);
+                subcat.empty();
+                $.each(data, function(index,element) {
+                    debtorList.push(element.shipper,element.consignee);
+                })
+                $.each(debtorList, function(index,value){
+                    subcat.append("<option selected value='" + value + "'>" + value + "</option>");
+                })
+                $(".modalInvoiceId").val(manifestNo);
 
-    //$(".initialiseInjectedHTML").on('click','.updateLocation',function () {
-    //    //var location = $('#location').val();
-    //    //var location = $('.location').find('input').val();
-    //    var location = $(this).closest('tr').find('td.location').text();
-    //    var id = $(this).closest('tr').find('td.id').text();
-    //    console.log("clicked location button value = "+location);
-    //    console.log("id value = "+id);
-    //    $.ajax({
-    //        url:'updateLocation',
-    //        type:'post',
-    //        data:{
-    //            location:location,
-    //            id:id
-    //        },
-    //        success:function(){
-    //            alert('Location updated')
-    //        }
-    //    });
-    //});
-    //
+            }
+        });
+    });
+
     $(".finalise").click(function(){
         var id = $(this).closest('tr').find('td.manifestId').text();
-        console.log("id value = "+id);
 
         $.ajax({
             url:'finalise',
@@ -175,4 +181,14 @@ $(document).ready(function() {
     $(".addRowButton").click(function(){
         $(".dimensions").append('<div class="col-sm-2 addRowButton"></div><label for="Length" class="col-sm-1 col-form-label">Length</label><div class="col-sm-2"><input type="text" class="form-control" name="length[]" value=""></div><label for="width" class="col-sm-1 col-form-label">Width</label><div class="col-sm-2"><input type="text" class="form-control" name="width[]" value=""></div><label for="height" class="col-sm-1 col-form-label">Height</label><div class="col-sm-2"><input type="text" class="form-control" name="height[]" value=""></div>');
     });
+
+    $('#location').editable({
+        url : 'updateLocation',
+        ajaxOptions : {
+            type : 'post'
+        },
+        success : function(data, config) {
+        }
+    });
+
 });

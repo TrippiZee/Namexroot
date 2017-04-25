@@ -191,17 +191,27 @@ class Waybills{
     public function updateLocation(){
         $pdo = App::get('pdo');
 
-//        $location = $_POST['location'];
-//        $id = $_POST['id'];
-        $location = $_POST['value'];
-        $id = $_POST['pk'];
+        $location = strtoupper($_POST['location']);
+        $id = $_POST['id'];
 
         $statement = $pdo->prepare("UPDATE manifest_details SET location = :location WHERE id = :id LIMIT 1");
         $statement->bindValue(':location',$location,PDO::PARAM_STR);
         $statement->bindValue(':id',$id,PDO::PARAM_INT);
         $statement->execute();
-        echo "success";
+        redirect_to('/');
+    }
 
+    public function getDebtors(){
+        $waybill_no = $_GET['id'];
+        $pdo = App::get('pdo');
+
+        $stmt = $pdo->prepare("SELECT * FROM manifest_details WHERE waybill_no = :waybill_no");
+        $stmt->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_CLASS);
+        echo json_encode($data);
+
+//        return $stmt->fetchAll();
     }
 
     public function getInvoiceDetails(){
@@ -211,8 +221,8 @@ class Waybills{
         $stmt = $pdo->prepare("SELECT * FROM manifest_details WHERE waybill_no = :waybill_no");
         $stmt->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
         $stmt->execute();
-//        return $stmt->fetchAll(PDO::FETCH_CLASS);
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+//        return $stmt->fetchAll();
     }
 
     public function deleteRecord($id){

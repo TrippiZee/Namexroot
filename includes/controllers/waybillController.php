@@ -93,6 +93,16 @@ class WaybillController{
         $model->updateLocation();
     }
 
+    public function getDebtorsByWaybill(){
+        $logger = new Logger('debugLog');
+        $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
+
+        $model = new Waybills();
+        $model->getDebtors();
+//        $logger->info("Data = ".print_r($data,true));
+
+    }
+
     public function printInvoice(){
         $logger = new Logger('debugLog');
         $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));

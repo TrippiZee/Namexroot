@@ -43,7 +43,7 @@ require 'modals/dashboard.modal.php';
         <div class="col-sm-7">
             <h1>Waybills</h1>
             <table class="table table-striped dataTable default initialiseInjectedHTML">
-                <thead><tr><th>Waybill No</th><th>Date</th><th>Shipper</th><th>Consignee</th><th>Location</th><th>Create POD</th><th>Print Invoice</th></tr></thead>
+                <thead><tr><th>Waybill No</th><th>Date</th><th>Shipper</th><th>Consignee</th><th colspan="2">Location</th><th>Create POD</th><th>Print Invoice</th></tr></thead>
                 <tbody class="waybillOfSelectedManifest">
                 </tbody>
             </table>
