@@ -44,6 +44,14 @@ class Customers{
         return array($statement->fetchAll(PDO::FETCH_CLASS),$filter->rowCount());
     }
 
+    public function getOptionCustomers(){
+        $pdo = App::get('pdo');
+
+        $stmt = $pdo->prepare("SELECT id,comp_name,acc_no FROM customers ORDER BY comp_name");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
     public function addCustomer(){
         $pdo = App::get('pdo');
         $comp_name = strtoupper($_POST['name']);

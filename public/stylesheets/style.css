@@ -365,6 +365,11 @@ table.dataTable tbody tr a {
 .addRowButton{
     margin-left: 50px;
 }
+
+.fixed-width {
+    width: 100%;
+}
+
 .dataTables_wrapper .dataTables_paginate {
     float: right;
     text-align: right;

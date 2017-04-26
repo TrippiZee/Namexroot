@@ -18,9 +18,9 @@ class DashboardController{
     public function dashboard(){
 
         $logger = new Logger('debugLog');
-        $logger->pushHandler(new StreamHandler(__DIR__.'/debug.log', Logger::DEBUG));
+        $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
 
-        $logger->info("Arrived at dashboard Controlller");
+//        $logger->info("Arrived at dashboard Controlller");
 
         $pdo = App::get('pdo');
 
@@ -29,8 +29,11 @@ class DashboardController{
         $day = Carbon::now();
         $services = new Services();
         $getServices = $services->getServices($pdo);
+        $customers = new Customers();
+        $customerSelect = $customers->getOptionCustomers();
+//        $logger->info("customers = ".print_r($getServices,true));
 
-        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day->toDateString(),'services'=>$getServices]);
+        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day->toDateString(),'services'=>$getServices,'customers'=>$customerSelect]);
 //        return view('dashboard');
     }
 

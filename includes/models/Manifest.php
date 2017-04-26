@@ -83,9 +83,10 @@ class Manifest
     public function getCurrentManifests(){
 
         $pdo = App::get('pdo');
-        $date = Carbon::now();
+        $today = Carbon::today();
+        $yesterday = Carbon::yesterday();
 
-        $statement = $pdo->prepare("SELECT * FROM manifest WHERE date = '{$date->toDateString()}'");
+        $statement = $pdo->prepare("SELECT * FROM manifest WHERE (date = '{$today->toDateString()}') OR (date = '{$yesterday->toDateString()}')");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }

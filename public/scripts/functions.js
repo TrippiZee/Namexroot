@@ -98,7 +98,7 @@ $(document).ready(function() {
                 var data = JSON.parse(response);
                 subcat.empty();
                 if (data.length == 0){
-                    subcat.append("<tr><td></td><td></td><td colspan='5'><h4>NO WAYBILLS EXIST - CREATE A NEW ONE?</h4></td></tr>");
+                    subcat.append("<tr><td></td><td></td><td></td><td colspan='5'><h4>NO WAYBILLS EXIST - CREATE A NEW ONE?</h4></td></tr>");
                 }else{
                     $.each(data, function(index,element) {
                         subcat.append("<tr><td class='waybillNo getRowTextDash'><a href='#' data-toggle='modal' data-target='#editWaybillDashboard' data-waybillNo='element.waybill_no'>" + element.waybill_no + "</a></td>" +

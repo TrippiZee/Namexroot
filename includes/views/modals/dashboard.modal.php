@@ -26,11 +26,25 @@
                     <div class="form-group row">
                         <label for="shipper" class="col-sm-2 col-form-label">Shipper</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="shipper" value="">
+                            <select class="fixed-width" name="shipper" >
+                                <option selected value=""></option>
+                                <?php foreach($customers as $key => $customer){?>
+                                    <option value="<?php echo $customer->comp_name;?>" data-pk="<?php echo $customer->id;?>"><?php echo $customer->comp_name;?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                         <label for="consignee" class="col-sm-2 col-form-label">Consignee</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="consignee" value="">
+                            <select class="fixed-width" name="consignee" >
+                                <option selected value=""></option>
+                                <?php foreach($customers as $key => $customer){?>
+                                    <option value="<?php echo $customer->comp_name;?>" data-pk="<?php echo $customer->id;?>"><?php echo $customer->comp_name;?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
 
@@ -121,11 +135,25 @@
                     <div class="form-group row">
                         <label for="shipper" class="col-sm-2 col-form-label">Shipper</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control modalShipper" name="shipper" value="">
+                            <select class="fixed-width modalShipper" name="shipper" >
+                                <option selected value=""></option>
+                                <?php foreach($customers as $key => $customer){?>
+                                    <option value="<?php echo $customer->comp_name;?>" data-pk="<?php echo $customer->id;?>"><?php echo $customer->comp_name;?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                         <label for="consignee" class="col-sm-2 col-form-label">Consignee</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control modalConsignee" name="consignee" value="">
+                            <select class="fixed-width modalConsignee" name="consignee" >
+                                <option selected value=""></option>
+                                <?php foreach($customers as $key => $customer){?>
+                                    <option value="<?php echo $customer->comp_name;?>" data-pk="<?php echo $customer->id;?>"><?php echo $customer->comp_name;?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
 
@@ -160,21 +188,21 @@
                     </div>
 
                     <hr>
-                    <div class="form-group row dimensions">
-                        <button type="button" class="col-sm-2 addRowButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp Add Row</button>
-                        <label for="Lenght" class="col-sm-1 col-form-label">Length</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="length[]" value="">
-                        </div>
-                        <label for="width" class="col-sm-1 col-form-label">Width</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="width[]" value="">
-                        </div>
-                        <label for="height" class="col-sm-1 col-form-label">Height</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="height[]" value="">
-                        </div>
-                    </div>
+<!--                    <div class="form-group row dimensions">-->
+<!--                        <button type="button" class="col-sm-2 addRowButton"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp Add Row</button>-->
+<!--                        <label for="Lenght" class="col-sm-1 col-form-label">Length</label>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="text" class="form-control" name="length[]" value="">-->
+<!--                        </div>-->
+<!--                        <label for="width" class="col-sm-1 col-form-label">Width</label>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="text" class="form-control" name="width[]" value="">-->
+<!--                        </div>-->
+<!--                        <label for="height" class="col-sm-1 col-form-label">Height</label>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="text" class="form-control" name="height[]" value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
             </div>
 
             <div class="modal-footer">
