@@ -107,12 +107,18 @@ class WaybillController{
         $logger = new Logger('debugLog');
         $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
 
+        $customerId = $_POST['debtor'];
+        $waybillId = $_POST['waybillId'];
+        $docCount = $_POST['docCount'];
+        $outlying = $_POST['outlying'];
+        $vat = $_POST['vat'];
+        $insurance = $_POST['insurance'];
         $model = new Waybills();
-        $data = $model->getInvoiceDetails();
+//        $data = $model->getInvoiceDetails();
 
-        $logger->info("Data = ".print_r($data,true));
-        global $connection;
-        return pdf('print_invoice',['connection'=>$connection]);
+//        $logger->info("Data = ".print_r($data,true));
+//        global $connection;
+        return pdf('print_invoice',['client'=>$customer,'waybill'=>$waybill]);
     }
 
 

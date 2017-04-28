@@ -11,7 +11,7 @@ $router->get('reports','ReportsController@reportDashboard');
 $router->get('user','UserController@allUsers');
 $router->get('logout','SystemController@logout');
 $router->get('print_manifest','ManifestController@printManifest');
-$router->get('print_invoice','WaybillController@printInvoice');
+$router->post('print_invoice','WaybillController@printInvoice');
 
 $router->get('del_customer','CustomerController@delCustomer');
 $router->get('del_manifest','ManifestController@delManifest');

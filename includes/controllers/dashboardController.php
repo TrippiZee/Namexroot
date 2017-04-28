@@ -26,14 +26,14 @@ class DashboardController{
 
         $manifest = new Manifest();
         $currentManifests = $manifest->getCurrentManifests();
-        $day = Carbon::now();
+        $day = Carbon::now()->toDateString();
         $services = new Services();
         $getServices = $services->getServices($pdo);
         $customers = new Customers();
         $customerSelect = $customers->getOptionCustomers();
 //        $logger->info("customers = ".print_r($getServices,true));
 
-        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day->toDateString(),'services'=>$getServices,'customers'=>$customerSelect]);
+        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day,'services'=>$getServices,'customers'=>$customerSelect]);
 //        return view('dashboard');
     }
 

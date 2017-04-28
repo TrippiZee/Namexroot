@@ -220,7 +220,7 @@
 <!----------------------------------------------------------PRINT INVOICE------------------------------------------------------>
 
 <div id="printInvoice" class="modal" role="dialog">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <!-- Modal content-->
         <div class="modal-content">
 
@@ -229,17 +229,59 @@
                 <h4 class="modal-title">Print Invoice</h4>
             </div>
             <div class="modal-body">
-                <form action="print_invoice" method="post">
+                <form TARGET="_blank" action="print_invoice" method="post">
 
                     <div class="form-group row">
                         <label for="type" class="col-sm-5 col-form-label">Select Debtor</label>
-                        <div class="col-sm-7">
-                            <select name="debtor" class="modalSelectPayee">
+                        <div class="col-sm-5">
+                            <select name="debtor" class="modalSelectPayee fixed-width">
                                 <option selected value=""></option>
                             </select>
-                            <input type="hidden" class="form-control modalInvoiceId" name="waybillId" value="">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-5 col-form-label">Number of docs</label>
+                        <div class="col-sm-2">
+                            <input type="number" min="0" name="docCount" class="fixed-width">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-5 col-form-label">Outlying area?</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" id="outlyingCheckbox">
+                        </div>
+                        <div class="col-sm-2" id="outlyingInput">
+                            <input type="text" name="outlying" class="fixed-width">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-5 col-form-label">Saturday Deliveries?</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" id="saturdayCheckbox">
+                        </div>
+                        <div class="col-sm-2" id="saturdayInput">
+                            <input type="text" name="saturday" class="fixed-width">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-5 col-form-label">VAT & Disbursement?</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" id="vatCheckbox">
+                        </div>
+                        <div class="col-sm-2" id="vatInput">
+                            <input type="text" name="vat" class="fixed-width">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-5 col-form-label">Insurance?</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" id="insuranceCheckbox">
+                        </div>
+                        <div class="col-sm-2" id="insuranceInput">
+                            <input type="text" name="insurance" class="fixed-width">
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control modalInvoiceId" name="waybillId" value="">
 
             </div>
 

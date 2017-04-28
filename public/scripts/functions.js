@@ -1,6 +1,11 @@
 $(document).ready(function() {
 
     $("#dimensions").hide();
+    $("#outlyingInput").hide();
+    $("#saturdayInput").hide();
+    $("#vatInput").hide();
+    $("#insuranceInput").hide();
+
 
     $(".customers").dataTable({
         "processing": true,
@@ -161,6 +166,19 @@ $(document).ready(function() {
 
             }
         });
+    });
+
+    $("#outlyingCheckbox").click(function(){
+        $("#outlyingInput").toggle(this.checked);
+    });
+    $("#saturdayCheckbox").click(function(){
+        $("#saturdayInput").toggle(this.checked);
+    });
+    $("#vatCheckbox").click(function(){
+        $("#vatInput").toggle(this.checked);
+    });
+    $("#insuranceCheckbox").click(function(){
+        $("#insuranceInput").toggle(this.checked);
     });
 
     $(".finalise").click(function(){
