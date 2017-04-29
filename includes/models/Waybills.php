@@ -202,11 +202,11 @@ class Waybills{
     }
 
     public function getDebtors(){
-        $waybill_no = $_GET['id'];
+        $id = $_GET['id'];
         $pdo = App::get('pdo');
 
-        $stmt = $pdo->prepare("SELECT * FROM manifest_details WHERE waybill_no = :waybill_no");
-        $stmt->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
+        $stmt = $pdo->prepare("SELECT * FROM manifest_details WHERE id = :id");
+        $stmt->bindValue('id',$id,PDO::PARAM_INT);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_CLASS);
         echo json_encode($data);
@@ -214,15 +214,14 @@ class Waybills{
 //        return $stmt->fetchAll();
     }
 
-    public function getInvoiceDetails(){
-        $waybill_no = $_GET['id'];
+    public function getWaybillDetails(){
+        $id = $_POST['waybillId'];
         $pdo = App::get('pdo');
 
-        $stmt = $pdo->prepare("SELECT * FROM manifest_details WHERE waybill_no = :waybill_no");
-        $stmt->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
+        $stmt = $pdo->prepare("SELECT waybill_no,qty,weight FROM manifest_details WHERE id = :id");
+        $stmt->bindValue('id',$id,PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
-//        return $stmt->fetchAll();
     }
 
     public function deleteRecord($id){

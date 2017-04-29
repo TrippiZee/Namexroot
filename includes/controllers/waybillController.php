@@ -3,6 +3,7 @@
 namespace Includes\Controllers;
 use Includes\App;
 use Includes\Models\Waybills;
+use Includes\Models\Customers;
 use Includes\Models\Services;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -30,8 +31,8 @@ class WaybillController{
         $tableRequest = $_REQUEST;
 
         $columns = array(
-            0 => 'waybill_no',
-            1 => 'date',
+            0 => 'date',
+            1 => 'waybill_no',
             2 => 'manifest_no',
             3 => 'shipper',
             4 => 'consignee',
@@ -45,8 +46,8 @@ class WaybillController{
 
         foreach ($tableData as $row){
             $nestedData = array();
-            $nestedData[] = "<a href='waybill?id=".$row->id."'>".$row->waybill_no."</a>";
             $nestedData[] = $row->date;
+            $nestedData[] = "<a href='waybill?id=".$row->id."'>".$row->waybill_no."</a>";
             $nestedData[] = $row->manifest_no;
             $nestedData[] = $row->shipper;
             $nestedData[] = $row->consignee;
@@ -107,18 +108,21 @@ class WaybillController{
         $logger = new Logger('debugLog');
         $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
 
-        $customerId = $_POST['debtor'];
-        $waybillId = $_POST['waybillId'];
         $docCount = $_POST['docCount'];
         $outlying = $_POST['outlying'];
         $vat = $_POST['vat'];
         $insurance = $_POST['insurance'];
-        $model = new Waybills();
-//        $data = $model->getInvoiceDetails();
+        $saturday = $_POST['saturday'];
 
-//        $logger->info("Data = ".print_r($data,true));
-//        global $connection;
-        return pdf('print_invoice',['client'=>$customer,'waybill'=>$waybill]);
+        $modelWaybill = new Waybills();
+        $waybill = $modelWaybill->getWaybillDetails();
+
+        $modelCustomer = new Customers();
+        $customer = $modelCustomer->getCustomerByName();
+
+//        $logger->info("Data = ".print_r($_POST,true));
+        $logger->info("Data = ".print_r($waybill,true));
+        return pdf('print_invoice',['client'=>$customer,'waybill'=>$waybill,'docCount'=>$docCount,'outlying'=>$outlying,'vat'=>$vat,'insurance'=>$insurance,'saturday'=>$saturday]);
     }
 
 

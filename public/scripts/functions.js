@@ -23,7 +23,8 @@ $(document).ready(function() {
             //url:"includes/controllers/manifests.php",
             url:"ajaxManifest",
             type:"post"
-        }
+        },
+        "aaSorting": [ [0,'desc'] ]
     });
     $(".waybills").dataTable({
         "processing": true,
@@ -32,7 +33,8 @@ $(document).ready(function() {
             //url:"includes/controllers/waybills.php",
             url:"ajaxWaybills",
             type:"post"
-        }
+        },
+        "aaSorting": [ [0,'desc'] ]
     });
     $(".pods").dataTable({
         "processing": true,
@@ -41,7 +43,8 @@ $(document).ready(function() {
             //url:"includes/controllers/pods.php",
             url:"ajaxPods",
             type:"post"
-        }
+        },
+        "aaSorting": [ [0,'desc'] ]
     });
     $(".users").dataTable({
         "processing": true,
@@ -142,7 +145,6 @@ $(document).ready(function() {
     });
 
     $(".initialiseInjectedHTML").on('click','.invoice',function () {
-        var manifestNo = $(this).closest('tr').find('td.waybillNo').text();
         var id = $(this).closest('tr').find('td.id').text();
         console.log("id value = "+id);
         var debtorList = [];
@@ -150,7 +152,7 @@ $(document).ready(function() {
             url:'debtor',
             type:'get',
             data:{
-                id:manifestNo
+                id:id
             },
             success:function(response){
                 var subcat = $(".modalSelectPayee");
@@ -162,7 +164,7 @@ $(document).ready(function() {
                 $.each(debtorList, function(index,value){
                     subcat.append("<option selected value='" + value + "'>" + value + "</option>");
                 })
-                $(".modalInvoiceId").val(manifestNo);
+                $(".modalInvoiceId").val(id);
 
             }
         });

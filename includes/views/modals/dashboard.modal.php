@@ -287,8 +287,8 @@
 
             <div class="modal-footer">
                 <div class="form-group row">
-                    <input type="submit" name="printInvoice" value="GO" />
-                    <input Type="button" VALUE="Cancel" data-dismiss="modal">
+                    <button class="btn btn-success" type="submit" id="printInvoice" >GO!</button>
+                    <button class="btn btn-success" data-dismiss="modal">Cancel</button>
 
                 </div>
             </div>

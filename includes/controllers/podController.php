@@ -29,8 +29,8 @@ class PodController{
         $tableRequest = $_REQUEST;
 
         $columns = array(
-            0 => 'pod_no',
-            1 => 'date',
+            0 => 'date',
+            1 => 'pod_no',
             2 => 'shipper',
             3 => 'consignee',
         );
@@ -44,8 +44,8 @@ class PodController{
 
         foreach ($tableData as $row){
             $nestedData = array();
-            $nestedData[] = "<a href='pod?id=".$row->id."'>".$row->pod_no."</a>";
             $nestedData[] = $row->date;
+            $nestedData[] = "<a href='pod?id=".$row->id."'>".$row->pod_no."</a>";
             $nestedData[] = $row->shipper;
             $nestedData[] = $row->consignee;
 

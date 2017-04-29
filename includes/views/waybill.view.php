@@ -33,7 +33,7 @@ include "layout/header.php";
             echo '<h2>All Waybills</h2>';
             echo '<table class="table table-striped dataTable waybills">
                     <thead>
-                    <tr><th>Waybill_No</th><th>Date</th><th>Manifest_No</th><th>Shipper</th><th>Consignee</th></tr>
+                    <tr><th>Date</th><th>Waybill_No</th><th>Manifest_No</th><th>Shipper</th><th>Consignee</th></tr>
                     </thead></table>';
         }
         require 'modals/waybill.modal.php';

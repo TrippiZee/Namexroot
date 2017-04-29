@@ -42,7 +42,7 @@ include "layout/header.php";
         else {
             echo '<table class="table table-striped dataTable pods">
                     <thead>
-                    <tr><th>POD Number</th><th>Date</th><th>Shipper</th><th>Consignee</th></tr>
+                    <tr><th>Date</th><th>POD Number</th><th>Shipper</th><th>Consignee</th></tr>
                     </thead></table>';
         }
         require 'modals/pod.modal.php';

@@ -52,6 +52,15 @@ class Customers{
         return $stmt->fetchAll(PDO::FETCH_CLASS);
     }
 
+    public function getCustomerByName(){
+        $pdo = App::get('pdo');
+        $company = $_POST['debtor'];
+        $stmt = $pdo->prepare("SELECT * FROM customers WHERE comp_name = :company");
+        $stmt->bindValue('company',$company,PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS);
+    }
+
     public function addCustomer(){
         $pdo = App::get('pdo');
         $comp_name = strtoupper($_POST['name']);
