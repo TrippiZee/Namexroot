@@ -3,6 +3,7 @@ namespace Includes\Controllers;
 use Includes\App;
 use Includes\Models\Manifest;
 use Includes\Models\Services;
+use Includes\Models\Area;
 use Includes\Models\Customers;
 
 class ManifestController {
@@ -15,8 +16,10 @@ class ManifestController {
         $getServices = $services->getServices($pdo);
         $customers = new Customers();
         $customerSelect = $customers->getOptionCustomers();
+        $area = new Area();
+        $allAreas = $area->getAreas();
 
-        return view('manifest',['services'=>$getServices,'connection'=>$connection,'customers'=>$customerSelect]);
+        return view('manifest',['services'=>$getServices,'connection'=>$connection,'customers'=>$customerSelect,'areas'=>$allAreas]);
     }
 
     public function printManifest(){

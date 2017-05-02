@@ -11,6 +11,7 @@ use Includes\Models\Pod;
 use Includes\Models\Services;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Includes\Models\Area;
 
 
 class DashboardController{
@@ -28,25 +29,28 @@ class DashboardController{
         $currentManifests = $manifest->getCurrentManifests();
         $day = Carbon::now()->toDateString();
         $services = new Services();
-        $getServices = $services->getServices($pdo);
+        $getServices = $services->getServices();
         $customers = new Customers();
         $customerSelect = $customers->getOptionCustomers();
 //        $logger->info("customers = ".print_r($getServices,true));
+        $area = new Area();
+        $allAreas = $area->getAreas();
 
-        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day,'services'=>$getServices,'customers'=>$customerSelect]);
+
+        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day,'services'=>$getServices,'customers'=>$customerSelect,'areas'=>$allAreas]);
 //        return view('dashboard');
     }
 
-    public function addEditWaybill(){
-        $model = new Waybills();
-
-        if (isset($_POST['editWaybill'])) {
-            $model->editWaybillDashboard();
-        } elseif (isset($_POST['createWaybill'])){
-            $model->addWaybillDashboard();
-        }
-
-    }
+//    public function addEditWaybill(){
+//        $model = new Waybills();
+//
+//        if (isset($_POST['editWaybill'])) {
+//            $model->editWaybill();
+//        } elseif (isset($_POST['createWaybill'])){
+//            $model->createWaybill();
+//        }
+//
+//    }
 
 }
 

@@ -5,6 +5,7 @@ use Includes\App;
 use Includes\Models\Waybills;
 use Includes\Models\Customers;
 use Includes\Models\Services;
+use Includes\Models\Dimensions;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -17,7 +18,7 @@ class WaybillController{
 
         $pdo = App::get('pdo');
         $services = new Services();
-        $getServices = $services->getServices($pdo);
+        $getServices = $services->getServices();
 
         return view('waybill',['services'=>$getServices,'connection'=>$connection]);
     }
@@ -108,6 +109,7 @@ class WaybillController{
         $logger = new Logger('debugLog');
         $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
 
+        $cubicSubTotal = [];
         $docCount = $_POST['docCount'];
         $outlying = $_POST['outlying'];
         $vat = $_POST['vat'];
@@ -117,12 +119,55 @@ class WaybillController{
         $modelWaybill = new Waybills();
         $waybill = $modelWaybill->getWaybillDetails();
 
+        $modelServices = new Services();
+        $serviceRates = $modelServices->getServices();
+
+        $modelDimensions = new Dimensions();
+        $calcDimensions = $modelDimensions->calculateFreight();
+        $logger->info("calculateFreight - ".print_r($calcDimensions,true));
+
+        foreach ($calcDimensions as $dimension=>$value){
+            $length = $value->length;
+            $width = $value->width;
+            $height = $value->height;
+            $logger->info("values = ".print_r($length." ".$width." ".$height,true));
+
+            $subTotal = $length*$width*$height;
+            $logger->info("sUBTOTAL = ".print_r($subTotal,true));
+
+            array_push($cubicSubTotal,$subTotal);
+        }
+
+        $freightTotal = array_sum($cubicSubTotal);
+
+        $volume = $freightTotal/5000;
+
+        $weight = $waybill[0]->weight;
+        $logger->info("weight = ".$weight);
+
+        if ($volume > $weight){
+            $freight = $volume;
+        } else {
+            $freight = $weight;
+        }
+
+        $type = $waybill[0]->type;
+        $area = $waybill[0]->area;
+        $logger->info("area = ".$area);
+        $rates = $modelServices->getRates($area, $type);
+        $initialRate = $rates[0]->initial;
+        $overRate = $rates[0]->over;
+        $freightCost = ($initialRate * 2) + ($freight - 2) * $overRate;
+
+        $fuelSurcharge = $freightCost*0.12; //this should be in config somewhere
+
         $modelCustomer = new Customers();
         $customer = $modelCustomer->getCustomerByName();
 
-//        $logger->info("Data = ".print_r($_POST,true));
-        $logger->info("Data = ".print_r($waybill,true));
-        return pdf('print_invoice',['client'=>$customer,'waybill'=>$waybill,'docCount'=>$docCount,'outlying'=>$outlying,'vat'=>$vat,'insurance'=>$insurance,'saturday'=>$saturday]);
+//        $logger->info("cubicArray = ".print_r($cubicSubTotal,true));
+//        $logger->info("freightTotal = ".$freightTotal);
+//        $logger->info("freight = ".$freight);
+        return pdf('print_invoice',['client'=>$customer,'waybill'=>$waybill,'docCount'=>$docCount,'outlying'=>$outlying,'vat'=>$vat,'insurance'=>$insurance,'saturday'=>$saturday,'freight'=>$freightCost,'fuelSurcharge'=>$fuelSurcharge]);
     }
 
 

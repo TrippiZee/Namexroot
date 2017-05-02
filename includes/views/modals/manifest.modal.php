@@ -187,6 +187,19 @@
                             <input type="hidden" class="form-control" id="manifestId" name="manifestId" value="<?php echo htmlentities($manifest['id'])?>">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-2 col-form-label">Area</label>
+                        <div class="col-sm-4">
+                            <select name="area" >
+                                <option selected value=""></option>
+                                <?php foreach($areas as $key => $area){?>
+                                    <option value="<?php echo $area->area;?>"><?php echo $area->area;?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
 
                     <hr>
                     <div class="form-group row dimensions">
@@ -245,7 +258,7 @@
                     <div class="form-group row">
                         <label for="shipper" class="col-sm-2 col-form-label">Shipper</label>
                         <div class="col-sm-4">
-                            <select class="fixed-width" name="shipper" >
+                            <select class="fixed-width modalShipper" name="shipper" >
                                 <option selected value=""></option>
                                 <?php foreach($customers as $key => $customer){?>
                                     <option value="<?php echo $customer->comp_name;?>" data-pk="<?php echo $customer->id;?>"><?php echo $customer->comp_name;?></option>
@@ -256,7 +269,7 @@
                         </div>
                         <label for="consignee" class="col-sm-2 col-form-label">Consignee</label>
                         <div class="col-sm-4">
-                            <select class="fixed-width" name="consignee" >
+                            <select class="fixed-width modalConsignee" name="consignee" >
                                 <option selected value=""></option>
                                 <?php foreach($customers as $key => $customer){?>
                                     <option value="<?php echo $customer->comp_name;?>" data-pk="<?php echo $customer->id;?>"><?php echo $customer->comp_name;?></option>
@@ -294,6 +307,19 @@
                             <input type="text" class="form-control modalRemarks" name="remarks" value="">
                             <input type="hidden" class="form-control modalId" id="waybillId" name="waybillId" value="">
                             <input type="hidden" class="form-control" id="manifestId" name="manifestId" value="<?php echo htmlentities($manifest['id'])?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-2 col-form-label">Area</label>
+                        <div class="col-sm-4">
+                            <select name="area" class="modalArea">
+                                <option selected value=""></option>
+                                <?php foreach($areas as $key => $area){?>
+                                    <option value="<?php echo $area->area;?>"><?php echo $area->area;?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
 

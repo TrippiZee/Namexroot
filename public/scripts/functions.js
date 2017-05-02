@@ -74,6 +74,7 @@ $(document).ready(function() {
         var type = element.closest('tr').find('td.type').text();
         var remarks = element.closest('tr').find('td.remarks').text();
         var date = element.closest('tr').find('td.date').text();
+        var area = element.closest('tr').find('td.area').text();
         var id = element.closest('tr').find('td.id').text();
         //var manifestId = element.closest('tr').find('td.manifestId').text();
         $(".modalWaybillNO").val(waybillNo);
@@ -84,6 +85,7 @@ $(document).ready(function() {
         $(".modalType").val(type);
         $(".modalRemarks").val(remarks);
         $(".modalDate").val(date);
+        $(".modalArea").val(area);
         $(".modalId").val(id);
         //$(".modalmanifestId").val(manifestId);
     }
@@ -124,6 +126,7 @@ $(document).ready(function() {
                             "<td class='weight' style='display:none'>"+ element.weight+"</td>" +
                             "<td class='type' style='display:none'>"+ element.type+"</td>" +
                             "<td class='remarks' style='display:none'>"+ element.remarks+"</td>" +
+                            "<td class='area' style='display:none'>"+ element.area+"</td>" +
                             "<td class='id' style='display:none'>"+ element.id+"</td></tr>"
                         );
                     })
@@ -133,6 +136,9 @@ $(document).ready(function() {
     });
 
     $(".initialiseInjectedHTML").on('click','.getRowTextDash',function () {
+        getRowData($(this));
+    });
+    $(".getRowText").click(function(){
         getRowData($(this));
     });
     $(".initialiseInjectedHTML").on('click','.updateLocation',function () {
@@ -145,8 +151,10 @@ $(document).ready(function() {
     });
 
     $(".initialiseInjectedHTML").on('click','.invoice',function () {
+        var waybillNo = $(this).closest('tr').find('td.waybillNo').text();
         var id = $(this).closest('tr').find('td.id').text();
         console.log("id value = "+id);
+        console.log("waybill no value = "+waybillNo);
         var debtorList = [];
         $.ajax({
             url:'debtor',
@@ -165,6 +173,7 @@ $(document).ready(function() {
                     subcat.append("<option selected value='" + value + "'>" + value + "</option>");
                 })
                 $(".modalInvoiceId").val(id);
+                $(".modalWaybillNo").val(waybillNo);
 
             }
         });

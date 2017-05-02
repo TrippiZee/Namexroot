@@ -57,6 +57,7 @@ use Carbon\Carbon;
     $y_axis = 60;
     $today = Carbon::today()->toDateString();
     $invNumber = 123456789;
+    $docFee = $docCount * 95;
 
     $pdf = new PDF();
     $pdf->AliasNbPages();
@@ -135,126 +136,58 @@ use Carbon\Carbon;
     $pdf->SetY(90);
     $pdf->SetX(155);
     $pdf->Cell(50,3,'AMOUNT',1,0,'C');
-
-
-//    $pdf->SetFont('Times','',12);
-//    $pdf->SetY(34);
-//    $pdf->SetX(0);
-//    $pdf->Cell(20,4,$date,0,0,'C');
-//    $pdf->SetX(25);
-//    $pdf->Cell(50,4,$manifest_number,0,0,'C');
-//    $pdf->SetX(80);
-//    $pdf->Cell(40,4,$driver,0,0,'C');
-//    $pdf->SetX(125);
-//    $pdf->Cell(40,4,$co_driver,0,0,'C');
-//    $pdf->SetX(170);
-//    $pdf->Cell(30,4,$reg_no,0,0,'C');
-//
-//    $pdf->SetFont('Times','',10);
-//    $pdf->SetY(40);
-//    $pdf->SetX(0);
-//    $pdf->Cell(22,4,'Seal Numbers:',1,0,'C');
-//    $pdf->SetX(25);
-//    $pdf->Cell(50,4,$seal1,0,0,'C');
-//    $pdf->SetX(80);
-//    $pdf->Cell(40,4,$seal2,0,0,'C');
-//    $pdf->SetX(125);
-//    $pdf->Cell(40,4,$seal3,0,0,'C');
-//    $pdf->SetX(170);
-//    $pdf->Cell(30,4,$seal4,0,0,'C');
-
-
-//    $pdf->waybill_heading($y_axis);
-
-//number
-    $counter = 1;
-
-//initialize counter
-    $i = 0;
-
-//Set maximum rows per page
-    $max = 54;
-
-//    while ($manifest_details = mysqli_fetch_assoc($manifest_query_details)) {
-//
-//        $waybill_number = $manifest_details['waybill_no'];
-//        $shipper = $manifest_details['shipper'];
-//        $consignee = $manifest_details['consignee'];
-//        $item_qty = $manifest_details['qty'];
-//        $item_weight = $manifest_details['weight'];
-//        $type = $manifest_details['type'];
-//        $remarks = $manifest_details['remarks'];
-//
-//        if ($i == $max) {
-//            $pdf->AddPage();
-//            $i = 0;
-//            $y_axis = 42;
-//            $pdf->waybill_heading($y_axis);
-//        }
-//        $pdf->SetFont('Times','',10);
-//        $pdf->SetY($y_axis);
-//        $pdf->SetX(0);
-//        $pdf->Cell(5,4,$counter,0,0,'C');
-//        $pdf->SetX(5);
-//        $pdf->Cell(20,4,$waybill_number,0,0,'C');
-//        $pdf->SetX(25);
-//        $pdf->Cell(55,4,$shipper,0,0,'L');
-//        $pdf->SetX(80);
-//        $pdf->Cell(55,4,$consignee,0,0,'L');
-//        $pdf->SetX(135);
-//        $pdf->Cell(15,4,$item_qty,0,0,'C');
-//        $pdf->SetX(150);
-//        $pdf->Cell(20,4,$item_weight,0,0,'C');
-//        $pdf->SetX(170);
-//        $pdf->Cell(15,4,$type,0,0,'C');
-//        $pdf->SetX(185);
-//        $pdf->Cell(25,4,$remarks,0,0,'C');
-//        $y_axis = $y_axis + $row_height;
-//        $i = $i + 1;
-//        $counter = $counter+1;
-//
-//    }
-
-//    $pdf->SetFont('Times','',12);
-//    $pdf->SetY($y_axis+5);
-//    $pdf->SetX(107);
-//    $pdf->Cell(25,4,'TOTALS:',1,0,'C');
-//    $pdf->SetX(132);
-//    $pdf->Cell(15,4,$qty['SUM(qty)'],0,0,'C');
-//    $pdf->SetX(147);
-//    $pdf->Cell(20,4,$weight['SUM(weight)'],0,0,'C');
-//
-//    $pdf->Ln();
-//    $pdf->Ln();
-//    $pdf->SetFont('Times','',10);
-//
-//    $pdf->SetX(107);
-//    $pdf->Cell(25,4,'Overnight:',0,0,'C');
-//    $pdf->SetX(147);
-//    $pdf->Cell(20,4,$overnight['SUM(weight)'],0,0,'C');
-//
-//    $pdf->Ln();
-//    $pdf->SetFont('Times','',10);
-//
-//    $pdf->SetX(107);
-//    $pdf->Cell(25,4,'Budget:',0,0,'C');
-//    $pdf->SetX(147);
-//    $pdf->Cell(20,4,$budget['SUM(weight)'],0,0,'C');
-//
-//    $pdf->Ln();
-//    $pdf->SetFont('Times','',10);
-//
-//    $pdf->SetX(107);
-//    $pdf->Cell(25,4,'Consol:',0,0,'C');
-//    $pdf->SetX(147);
-//    $pdf->Cell(20,4,$consol['SUM(weight)'],0,0,'C');
-//
-//    $pdf->Ln();
-//    $pdf->SetFont('Times','',10);
-//
-//    $pdf->SetX(107);
-//    $pdf->Cell(25,4,'Economy:',0,0,'C');
-//    $pdf->SetX(147);
-//    $pdf->Cell(20,4,$economy['SUM(weight)'],0,0,'C');
+$pdf->SetY(95);
+$pdf->SetX(5);
+$pdf->Cell(50,3,$waybill[0]->waybill_no,0,0,'C');
+$pdf->SetY(95);
+$pdf->SetX(80);
+$pdf->Cell(50,3,'FREIGHT',0,0,'C');
+$pdf->SetY(95);
+$pdf->SetX(155);
+$pdf->Cell(50,3,'R '.$freight,0,0,'C');
+$pdf->SetY(98);
+$pdf->SetX(80);
+$pdf->Cell(50,3,'DOCUMENTATION FEE',0,0,'C');
+$pdf->SetY(98);
+$pdf->SetX(155);
+$pdf->Cell(50,3,'R '.$docFee,0,0,'C');
+$pdf->SetY(101);
+$pdf->SetX(80);
+$pdf->Cell(50,3,'FUEL SURCHARGE',0,0,'C');
+$pdf->SetY(101);
+$pdf->SetX(155);
+$pdf->Cell(50,3,'R '.$fuelSurcharge,0,0,'C');
+if ($vat){
+    $pdf->SetY(104);
+    $pdf->SetX(80);
+    $pdf->Cell(50,3,'VAT',0,0,'C');
+    $pdf->SetY(104);
+    $pdf->SetX(155);
+    $pdf->Cell(50,3,'R '.$vat,0,0,'C');
+}
+if ($insurance){
+    $pdf->SetY(107);
+    $pdf->SetX(80);
+    $pdf->Cell(50,3,'INSURANCE',0,0,'C');
+    $pdf->SetY(107);
+    $pdf->SetX(155);
+    $pdf->Cell(50,3,'R '.$insurance,0,0,'C');
+}
+if ($saturday){
+    $pdf->SetY(110);
+    $pdf->SetX(80);
+    $pdf->Cell(50,3,'SATURDAY DELIVERIES',0,0,'C');
+    $pdf->SetY(110);
+    $pdf->SetX(155);
+    $pdf->Cell(50,3,'R '.$saturday,0,0,'C');
+}
+if ($outlying){
+    $pdf->SetY(113);
+    $pdf->SetX(80);
+    $pdf->Cell(50,3,'OUTLYING AREAS',0,0,'C');
+    $pdf->SetY(113);
+    $pdf->SetX(155);
+    $pdf->Cell(50,3,'R '.$outlying,0,0,'C');
+}
 
     $pdf->Output();

@@ -72,8 +72,10 @@ class ComposerStaticInit819f9842d034e6439b92d992998a92c9
         'Includes\\Controllers\\SystemController' => __DIR__ . '/../..' . '/includes/controllers/systemController.php',
         'Includes\\Controllers\\UserController' => __DIR__ . '/../..' . '/includes/controllers/userController.php',
         'Includes\\Controllers\\WaybillController' => __DIR__ . '/../..' . '/includes/controllers/waybillController.php',
+        'Includes\\Models\\Area' => __DIR__ . '/../..' . '/includes/models/area.php',
         'Includes\\Models\\Connection' => __DIR__ . '/../..' . '/includes/models/Connection.php',
         'Includes\\Models\\Customers' => __DIR__ . '/../..' . '/includes/models/Customers.php',
+        'Includes\\Models\\Dimensions' => __DIR__ . '/../..' . '/includes/models/Dimensions.php',
         'Includes\\Models\\Manifest' => __DIR__ . '/../..' . '/includes/models/Manifest.php',
         'Includes\\Models\\Pod' => __DIR__ . '/../..' . '/includes/models/Pod.php',
         'Includes\\Models\\Reports' => __DIR__ . '/../..' . '/includes/models/Reports.php',
@@ -327,6 +329,7 @@ class ComposerStaticInit819f9842d034e6439b92d992998a92c9
         'Symfony\\Component\\Translation\\Util\\ArrayConverter' => __DIR__ . '/..' . '/symfony/translation/Util/ArrayConverter.php',
         'Symfony\\Component\\Translation\\Writer\\TranslationWriter' => __DIR__ . '/..' . '/symfony/translation/Writer/TranslationWriter.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
+        'includes\\controllers\\LocationController' => __DIR__ . '/../..' . '/includes/controllers/LocationController.php',
         'includes\\models\\Sundries' => __DIR__ . '/../..' . '/includes/models/Sundries.php',
     );
 

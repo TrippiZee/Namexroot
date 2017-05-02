@@ -29,6 +29,10 @@ class Waybills{
 
     public $remarks;
 
+    public $location;
+
+    public $area;
+
     function getAllWaybills($pdo,$columns,$request,$searchTerm){
         $statement = $pdo->prepare('SELECT * FROM manifest_details WHERE 1 AND ( waybill_no LIKE "'.$searchTerm.'%" OR date LIKE "'.$searchTerm.'%" OR manifest_no LIKE "'.$searchTerm.'%" OR shipper LIKE "'.$searchTerm.'%" OR consignee LIKE "'.$searchTerm.'%" ) ORDER BY '.$columns[$request['order'][0]['column']].' '.$request['order'][0]['dir'].' LIMIT '.$request['start'].' ,'.$request['length'].' ');
 
@@ -95,7 +99,7 @@ class Waybills{
         $length=array();
         $width=array();
         $height=array();
-        $waybill_no = $_POST['number'];
+        $waybill_no = strtoupper($_POST['number']);
         $date = $_POST['date'];
         $shipper = strtoupper($_POST['shipper']);
         $consignee = strtoupper($_POST['consignee']);
@@ -103,6 +107,7 @@ class Waybills{
         $type = strtoupper($_POST['type']);
         $remarks = strtoupper($_POST['remarks']);
         $weight = $_POST['weight'];
+        $area = strtoupper($_POST['area']);
         $id = $_POST['manifestId'];
         foreach($_POST['length']as $value) {
             array_push($length,$value);
@@ -115,16 +120,17 @@ class Waybills{
         }
         try{
             $pdo->beginTransaction();
-            $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks) VALUES(:id,:waybill_no,:date,:shipper,:consignee,:qty,:weight,:type,:remarks)");
+            $statement = $pdo->prepare("INSERT INTO manifest_details (manifest_no, waybill_no, date, shipper, consignee, qty, weight, type, remarks, area) VALUES(:id,:waybill_no,:date,:shipper,:consignee,:qty,:weight,:type,:remarks,:area)");
             $statement->bindValue(':id',$id,PDO::PARAM_INT);
             $statement->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
             $statement->bindValue(':date',$date,PDO::PARAM_STR);
-            $statement->bindValue(':shipper',$shipper.PDO::PARAM_STR);
+            $statement->bindValue(':shipper',$shipper,PDO::PARAM_STR);
             $statement->bindValue(':consignee',$consignee,PDO::PARAM_STR);
             $statement->bindValue(':qty',$qty,PDO::PARAM_INT);
             $statement->bindValue(':weight',$weight,PDO::PARAM_INT);
             $statement->bindValue(':type',$type,PDO::PARAM_STR);
             $statement->bindValue(':remarks',$remarks,PDO::PARAM_STR);
+            $statement->bindValue(':area',$area,PDO::PARAM_STR);
             $statement->execute();
 
             $statement = $pdo->prepare("INSERT INTO dimensions (waybill_no,length,width,height) VALUES(:waybill_no,:length,:width,:height)");
@@ -157,7 +163,7 @@ class Waybills{
     public function editWaybill(){
         $pdo = App::get('pdo');
 
-        $waybill_no = ($_POST['number']);
+        $waybill_no = strtoupper($_POST['number']);
         $date = $_POST['date'];
         $shipper = strtoupper($_POST['shipper']);
         $consignee = strtoupper($_POST['consignee']);
@@ -165,19 +171,21 @@ class Waybills{
         $type = strtoupper($_POST['type']);
         $remarks = strtoupper($_POST['remarks']);
         $weight = $_POST['weight'];
+        $area = strtoupper($_POST['area']);
         $id = $_POST['waybillId'];
         $manifestId = &$_POST['manifestId'];
 
-        $statement = $pdo->prepare("UPDATE manifest_details SET waybill_no = :waybill_no,date = :date, shipper = :shipper, consignee = :consignee, qty = :qty, type = :type,weight = :weight, remarks = :remarks WHERE id = :id LIMIT 1");
+        $statement = $pdo->prepare("UPDATE manifest_details SET waybill_no = :waybill_no,date = :date, shipper = :shipper, consignee = :consignee, qty = :qty, type = :type,weight = :weight, remarks = :remarks,area = :area WHERE id = :id LIMIT 1");
 
         $statement->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
         $statement->bindValue(':date',$date,PDO::PARAM_STR);
-        $statement->bindValue(':shipper',$shipper.PDO::PARAM_STR);
+        $statement->bindValue(':shipper',$shipper,PDO::PARAM_STR);
         $statement->bindValue(':consignee',$consignee,PDO::PARAM_STR);
         $statement->bindValue(':qty',$qty,PDO::PARAM_INT);
         $statement->bindValue(':weight',$weight,PDO::PARAM_INT);
         $statement->bindValue(':type',$type,PDO::PARAM_STR);
         $statement->bindValue(':remarks',$remarks,PDO::PARAM_STR);
+        $statement->bindValue(':area',$area,PDO::PARAM_STR);
         $statement->bindValue(':id',$id,PDO::PARAM_INT);
         $statement->execute();
 
@@ -218,7 +226,7 @@ class Waybills{
         $id = $_POST['waybillId'];
         $pdo = App::get('pdo');
 
-        $stmt = $pdo->prepare("SELECT waybill_no,qty,weight FROM manifest_details WHERE id = :id");
+        $stmt = $pdo->prepare("SELECT waybill_no,qty,weight,type,area FROM manifest_details WHERE id = :id");
         $stmt->bindValue('id',$id,PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);

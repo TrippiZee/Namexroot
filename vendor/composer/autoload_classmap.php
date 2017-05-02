@@ -23,8 +23,10 @@ return array(
     'Includes\\Controllers\\SystemController' => $baseDir . '/includes/controllers/systemController.php',
     'Includes\\Controllers\\UserController' => $baseDir . '/includes/controllers/userController.php',
     'Includes\\Controllers\\WaybillController' => $baseDir . '/includes/controllers/waybillController.php',
+    'Includes\\Models\\Area' => $baseDir . '/includes/models/area.php',
     'Includes\\Models\\Connection' => $baseDir . '/includes/models/Connection.php',
     'Includes\\Models\\Customers' => $baseDir . '/includes/models/Customers.php',
+    'Includes\\Models\\Dimensions' => $baseDir . '/includes/models/Dimensions.php',
     'Includes\\Models\\Manifest' => $baseDir . '/includes/models/Manifest.php',
     'Includes\\Models\\Pod' => $baseDir . '/includes/models/Pod.php',
     'Includes\\Models\\Reports' => $baseDir . '/includes/models/Reports.php',
@@ -278,5 +280,6 @@ return array(
     'Symfony\\Component\\Translation\\Util\\ArrayConverter' => $vendorDir . '/symfony/translation/Util/ArrayConverter.php',
     'Symfony\\Component\\Translation\\Writer\\TranslationWriter' => $vendorDir . '/symfony/translation/Writer/TranslationWriter.php',
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
+    'includes\\controllers\\LocationController' => $baseDir . '/includes/controllers/LocationController.php',
     'includes\\models\\Sundries' => $baseDir . '/includes/models/Sundries.php',
 );
