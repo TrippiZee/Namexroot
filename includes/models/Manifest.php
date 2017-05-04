@@ -5,6 +5,9 @@ namespace Includes\Models;
 use PDO;
 use Includes\App;
 use Carbon\Carbon;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 
 class Manifest
 {
@@ -75,7 +78,8 @@ class Manifest
     public function deleteRecord($id){
 
         $pdo = App::get('pdo');
-        $statement = $pdo->prepare("DELETE FROM manifest WHERE id = {$id} LIMIT 1");
+        $statement = $pdo->prepare("DELETE FROM manifest WHERE id = :id LIMIT 1");
+        $statement->bindValue(':id',$id,PDO::PARAM_INT);
         $statement->execute();
         redirect_to('manifest');
     }
@@ -86,7 +90,10 @@ class Manifest
         $today = Carbon::today();
         $yesterday = Carbon::yesterday();
 
-        $statement = $pdo->prepare("SELECT * FROM manifest WHERE (date = '{$today->toDateString()}') OR (date = '{$yesterday->toDateString()}')");
+//        $statement = $pdo->prepare("SELECT * FROM manifest WHERE (date = '{$today->toDateString()}') OR (date = '{$yesterday->toDateString()}')");
+        $statement = $pdo->prepare("SELECT * FROM manifest WHERE (date = :today) OR (date = :yesterday)");
+        $statement->bindValue(':today',$today,PDO::PARAM_STR);
+        $statement->bindValue(':yesterday',$yesterday,PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
@@ -95,10 +102,36 @@ class Manifest
         $pdo = App::get('pdo');
 
         $id = $_POST['id'];
-        $statement = $pdo->prepare("UPDATE manifest SET finalised = 1 WHERE id = '{$id}' LIMIT 1");
+        $statement = $pdo->prepare("UPDATE manifest SET finalised = 1 WHERE id = :id LIMIT 1");
+        $statement->bindValue(':id',$id,PDO::PARAM_INT);
         $statement->execute();
 
         echo 'success';
+    }
+
+    public function addSealNumbers(){
+        $logger = new Logger('debugLog');
+        $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
+
+        $pdo = App::get('pdo');
+
+        $id = $_POST['id'];
+        $seal1 = $_POST['seal1'];
+        $seal2 = $_POST['seal2'];
+        $seal3 = $_POST['seal3'];
+        $seal4 = $_POST['seal4'];
+
+        $logger->info("SealNumber POST = ".print_r($_POST,true));
+
+        $statement = $pdo->prepare("UPDATE manifest SET seal1 = :seal1,seal2 = :seal2,seal3 = :seal3,seal4 = :seal4 WHERE id = :id");
+        $statement->bindValue(':seal1',$seal1,PDO::PARAM_STR);
+        $statement->bindValue(':seal2',$seal2,PDO::PARAM_STR);
+        $statement->bindValue(':seal3',$seal3,PDO::PARAM_STR);
+        $statement->bindValue(':seal4',$seal4,PDO::PARAM_STR);
+        $statement->bindValue(':id',$id,PDO::PARAM_INT);
+        $statement->execute();
+        redirect_to('manifest?id='.$id);
+
     }
 
 }

@@ -82,6 +82,17 @@ class ManifestController {
         }
     }
 
+    public function sealNumbers(){
+        $model = new Manifest();
+
+        if (isset($_POST['addSealNumbers'])) {
+            $model->addSealNumbers();
+        }
+
+//        global $connection;
+//        return view('sealnumbers',['connection'=>$connection]);
+    }
+
     public function finalise(){
         $model = new Manifest();
         if (isset($_POST['id'])) {

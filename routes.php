@@ -10,6 +10,7 @@ $router->get('costing','CustomerController@costingMain');
 $router->get('reports','ReportsController@reportDashboard');
 $router->get('user','UserController@allUsers');
 $router->get('logout','SystemController@logout');
+$router->post('sealNumbers','ManifestController@sealNumbers');
 $router->get('print_manifest','ManifestController@printManifest');
 $router->post('print_invoice','WaybillController@printInvoice');
 

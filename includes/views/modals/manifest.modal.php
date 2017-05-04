@@ -447,3 +447,51 @@
         </div>
     </div>
 </div>
+<!----------------------------------------------------------ADD SEAL NUMBERS----------------------------------------------------->
+<div id="addSealNumbers" class="modal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Enter Seal Numbers</h4>
+            </div>
+            <div class="modal-body">
+                <form action="sealNumbers" method="post">
+
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">Seal 1</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="seal1" value="">
+                        </div>
+                        <label for="date" class="col-sm-2 col-form-label">Seal 2</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="seal2" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="shipper" class="col-sm-2 col-form-label">Seal 3</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="seal3" value="" >
+                        </div>
+                        <label for="consignee" class="col-sm-2 col-form-label">Seal 4</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="seal4" value="" >
+                            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo htmlentities($manifest['id'])?>">
+                        </div>
+                    </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group row">
+                    <input type="submit" name="addSealNumbers" value="Add" />
+                    <input Type="button" VALUE="Cancel" data-dismiss="modal">
+
+                </div>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>

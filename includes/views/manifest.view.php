@@ -102,7 +102,8 @@ include "includes/views/layout/header.php";
             echo '<td>'.$manifest['seal2'].'</td>';
             echo '<td>'.$manifest['seal3'].'</td>';
             echo '<td>'.$manifest['seal4'].'</td></tr>';
-            echo '<tr><td class="edit"><a href="sealnumbers.php?id='.$manifest['id'].'"><input type="button" value="Add/Edit Seal Nr"/></a></td></tr>';
+//            echo '<tr><td class="edit"><a href="sealnumbers?id='.$manifest['id'].'"><input type="button" value="Add/Edit Seal Nr"/></a></td></tr>';
+            echo '<td class="edit"><a><input type="button" data-toggle="modal" data-target="#addSealNumbers" value="Enter Seal Numbers"/></a></td>';
 
             echo '</table>';
 
