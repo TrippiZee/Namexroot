@@ -24,10 +24,16 @@
 <div id="container-fluid">
     <div id="head" class="row">
         <div class="col-sm-12">
-        <div id="logo"></div>
-        <div id="user">Welcome: <?php echo getuserfield('name').' '.getuserfield('surname') ?> <br/>
-            <a href="logout">Logout</a>
-        </div>
+            <div class="col-sm-2">
+                <div id="logo"></div>
+            </div>
+            <div class="col-sm-7">
+            </div>
+            <div class="col-sm-3">
+                <div class="pull-right">Welcome: <?php echo getuserfield('name').' '.getuserfield('surname') ?> <br/>
+                    <a class="pull-right" href="logout">Logout</a>
+                </div>
+            </div>
         </div>
     </div>
 <?php

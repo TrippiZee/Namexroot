@@ -54,8 +54,14 @@ class Manifest
         $caps_reg_no = strtoupper($_POST['reg_no']);
         $reg_no = trim($caps_reg_no,"");
 
-        $statement = $pdo->prepare("UPDATE manifest SET manifest_no = '{$number}',date = '{$date}',driver = '{$driver}',co_driver = '{$co_driver}',
-                      reg_no = '{$reg_no}' WHERE id = '{$post_id}' LIMIT 1");
+        $statement = $pdo->prepare("UPDATE manifest SET manifest_no = :number,date = :date,driver = :driver,co_driver = :co_driver,
+                      reg_no = :reg_no WHERE id = :post_id LIMIT 1");
+        $statement->bindValue(':number',$number,PDO::PARAM_STR);
+        $statement->bindValue(':date',$date,PDO::PARAM_STR);
+        $statement->bindValue(':driver',$driver,PDO::PARAM_STR);
+        $statement->bindValue(':co_driver',$co_driver,PDO::PARAM_STR);
+        $statement->bindValue(':reg_no',$reg_no,PDO::PARAM_STR);
+        $statement->bindValue('post_id',$post_id,PDO::PARAM_INT);
         $statement->execute();
         redirect_to('manifest?id='.$post_id);
 
@@ -70,7 +76,12 @@ class Manifest
         $caps_reg_no = strtoupper($_POST['reg_no']);
         $reg_no = trim($caps_reg_no,"");
 
-        $statement = $pdo->prepare("INSERT INTO manifest (manifest_no, date, driver, co_driver, reg_no, finalised) VALUES ('{$number}', '{$date}','{$driver}','{$co_driver}', '{$reg_no}','0')");
+        $statement = $pdo->prepare("INSERT INTO manifest (manifest_no, date, driver, co_driver, reg_no, finalised) VALUES (:number, :date, :driver, :co_driver, :reg_no, '0')");
+        $statement->bindValue(':number',$number,PDO::PARAM_STR);
+        $statement->bindValue(':date',$date,PDO::PARAM_STR);
+        $statement->bindValue(':driver',$driver,PDO::PARAM_STR);
+        $statement->bindValue(':co_driver',$co_driver,PDO::PARAM_STR);
+        $statement->bindValue(':reg_no',$reg_no,PDO::PARAM_STR);
         $statement->execute();
         redirect_to('manifest?id='.$pdo->lastInsertId());
     }

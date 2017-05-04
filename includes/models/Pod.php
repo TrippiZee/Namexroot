@@ -46,8 +46,21 @@ class Pod
         $time = $_POST['time'];
         $post_id = $_POST['id'];
 
-        $statement = $pdo->prepare("UPDATE pod SET pod_no = '{$pod_no}',date = '{$date}',shipper = '{$shipper}',consignee = '{$consignee}',qty = '{$qty}',weight = '{$weight}',type = '{$type}',remarks = '{$remarks}',delivery_date = '{$delivery}',signed_by = '{$signed}',time = '{$time}' WHERE id = '{$post_id}' LIMIT 1");
+        $statement = $pdo->prepare("UPDATE pod SET pod_no = :pod_no, date = :date, shipper = :shipper, consignee = :consignee, qty = :qty, weight = :weight, type = :type, remarks = :remarks,delivery_date = :delivery, signed_by = :signed, time = :time WHERE id = :post_id LIMIT 1");
         $statement->execute();
+        $statement->bindValue(':pod_no',$pod_no,PDO::PARAM_STR);
+        $statement->bindValue(':date',$date,PDO::PARAM_STR);
+        $statement->bindValue(':shipper',$shipper,PDO::PARAM_STR);
+        $statement->bindValue(':consignee',$consignee,PDO::PARAM_STR);
+        $statement->bindValue(':qty',$qty,PDO::PARAM_INT);
+        $statement->bindValue(':weight',$weight,PDO::PARAM_INT);
+        $statement->bindValue(':type',$type,PDO::PARAM_STR);
+        $statement->bindValue(':remarks',$remarks,PDO::PARAM_STR);
+        $statement->bindValue(':delivery',$delivery,PDO::PARAM_STR);
+        $statement->bindValue(':signed',$signed,PDO::PARAM_STR);
+        $statement->bindValue(':time',$time,PDO::PARAM_STR);
+        $statement->bindValue(':id',$post_id,PDO::PARAM_INT);
+
         redirect_to('pod?id='.$post_id);
 
     }
@@ -55,7 +68,8 @@ class Pod
     public function deleteRecord($id){
 
         $pdo = App::get('pdo');
-        $statement = $pdo->prepare("DELETE FROM pod WHERE id = {$id} LIMIT 1");
+        $statement = $pdo->prepare("DELETE FROM pod WHERE id =:id LIMIT 1");
+        $statement->bindValue(':id',$id,PDO::PARAM_INT);
         $statement->execute();
         redirect_to('pod');
 

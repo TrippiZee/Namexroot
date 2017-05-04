@@ -27,7 +27,7 @@ class User
 
     public function addUser(){
         $pdo = App::get('pdo');
-        $user_name = strtoupper($_POST['username']);
+        $userName = strtoupper($_POST['username']);
         $password = ($_POST['password']);
         $name = strtoupper($_POST['name']);
         $surname = strtoupper($_POST['surname']);
@@ -35,7 +35,12 @@ class User
 
         $safe_password = md5($password);
 
-        $statement = $pdo->prepare("INSERT INTO users (username, password, name, surname, role) VALUES ('{$user_name}', '{$safe_password}', '{$name}', '{$surname}', '{$role}')");
+        $statement = $pdo->prepare("INSERT INTO users (username, password, name, surname, role) VALUES (:user_name, :password, :name, :surname, :role)");
+        $statement->bindValue(':userName',$userName,PDO::PARAM_STR);
+        $statement->bindValue(':password',$safe_password,PDO::PARAM_STR);
+        $statement->bindValue(':name',$name,PDO::PARAM_STR);
+        $statement->bindValue(':surname',$surname,PDO::PARAM_STR);
+        $statement->bindValue(':role',$role,PDO::PARAM_STR);
         $statement->execute();
         redirect_to("user?id=".$pdo->lastInsertId());
 
@@ -43,7 +48,7 @@ class User
 
     public function editUser(){
         $pdo = App::get('pdo');
-        $user_name = strtoupper($_POST['username']);
+        $userName = strtoupper($_POST['username']);
         $password = $_POST['password'];
         $name = strtoupper($_POST['name']);
         $surname = strtoupper($_POST['surname']);
@@ -52,7 +57,13 @@ class User
         $safe_password = md5($password);
 
 
-        $statement = $pdo->prepare("UPDATE users SET username = '{$user_name}',password = '{$safe_password}',name = '{$name}',surname = '{$surname}',role = '{$role}' WHERE id = '{$post_id}' LIMIT 1");
+        $statement = $pdo->prepare("UPDATE users SET username = userName, password = :password, name = :name, surname = :surname, role = :role WHERE id = :post_id LIMIT 1");
+        $statement->bindValue(':userName',$userName,PDO::PARAM_STR);
+        $statement->bindValue(':password',$safe_password,PDO::PARAM_STR);
+        $statement->bindValue(':name',$name,PDO::PARAM_STR);
+        $statement->bindValue(':surname',$surname,PDO::PARAM_STR);
+        $statement->bindValue(':role',$role,PDO::PARAM_STR);
+        $statement->bindValue(':post_id',$post_id,PDO::PARAM_INT);
         $statement->execute();
         redirect_to("user?id=".$post_id);
     }
@@ -60,14 +71,17 @@ class User
     public function deleteRecord($id){
 
         $pdo = App::get('pdo');
-        $statement = $pdo->prepare("DELETE FROM users WHERE id = {$id} LIMIT 1");
+        $statement = $pdo->prepare("DELETE FROM users WHERE id =:id LIMIT 1");
+        $statement->bindValue(':id',$id,PDO::PARAM_int);
         $statement->execute();
         redirect_to('user');
     }
 
     public function userMatch($userName,$password){
         $pdo = App::get('pdo');
-        $statement = $pdo->prepare("SELECT id FROM users WHERE username = '{$userName}' AND password = '{$password}'");
+        $statement = $pdo->prepare("SELECT id FROM users WHERE username = :userName AND password = :password");
+        $statement->bindValue(':userName',$userName,PDO::PARAM_STR);
+        $statement->bindValue(':password',$password,PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_CLASS);
         if ($statement->rowCount()==0){
