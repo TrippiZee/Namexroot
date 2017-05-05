@@ -272,24 +272,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="type" class="col-sm-5 col-form-label">Outlying area?</label>
-                        <div class="col-sm-1">
-                            <input type="checkbox" id="outlyingCheckbox">
-                        </div>
-                        <div class="col-sm-2" id="outlyingInput">
-                            <input type="text" name="outlying" class="fixed-width">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="type" class="col-sm-5 col-form-label">Saturday Deliveries?</label>
-                        <div class="col-sm-1">
-                            <input type="checkbox" id="saturdayCheckbox">
-                        </div>
-                        <div class="col-sm-2" id="saturdayInput">
-                            <input type="text" name="saturday" class="fixed-width">
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="type" class="col-sm-5 col-form-label">VAT & Disbursement?</label>
                         <div class="col-sm-1">
                             <input type="checkbox" id="vatCheckbox">
@@ -305,6 +287,24 @@
                         </div>
                         <div class="col-sm-2" id="insuranceInput">
                             <input type="text" name="insurance" class="fixed-width">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-5 col-form-label">Outlying area?</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" id="outlyingCheckbox">
+                        </div>
+                        <div class="col-sm-2" id="outlyingInput">
+                            <input type="text" name="outlying" class="fixed-width">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="type" class="col-sm-5 col-form-label">Saturday Deliveries?</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" id="saturdayCheckbox">
+                        </div>
+                        <div class="col-sm-2" id="saturdayInput">
+                            <input type="text" name="saturday" class="fixed-width">
                         </div>
                     </div>
                     <input type="hidden" class="form-control modalInvoiceId" name="waybillId" value="">

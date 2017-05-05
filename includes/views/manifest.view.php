@@ -69,11 +69,11 @@ include "includes/views/layout/header.php";
         <div id="table">
             <?php
 
-            echo '<table class="table dataTable default ">';
+            echo '<table class="table dataTable default initialiseInjectedHTML">';
             echo '<h2>Waybills:</h2>';
 
             echo '<thead>';
-            echo "<tr><th>Waybill Number</th><th>Shipper</th><th>Consignee</th><th>Qty</th><th>Weight</th><th>Type</th><th>Remarks</th><th>Edit</th><th>Delete</th><th>Create POD</th><th>Area</th></tr>";
+            echo "<tr><th>Waybill Number</th><th>Shipper</th><th>Consignee</th><th>Qty</th><th>Weight</th><th>Type</th><th>Remarks</th><th>Edit</th><th>Delete</th><th>Create POD</th><th>Area</th><th>Print Invoice</th></tr>";
             echo '</thead>';
             while ($data = mysqli_fetch_assoc($manifest_query_details)) {
 
@@ -89,6 +89,7 @@ include "includes/views/layout/header.php";
                     echo '<td class="edit"><a href="del_waybill?id=' .$data['id'].'" onclick="return confirm(\'Really Delete?\');"><input type="button" value="Delete"/></a></td>';}
                 echo '<td class="edit getRowText"><a><input type="button" data-toggle="modal" data-target="#createPOD" value="Create POD"/></a></td>';
                 echo '<td class="area">'.$data['area'].'</td>';
+                echo '<td class="edit invoice"><a><button data-toggle="modal" data-target="#printInvoice">Print Invoice</button></a></td>';
                 echo '<td style="visibility: hidden" class="date">'.$data['date'].'</td>';
                 echo '<td style="visibility: hidden" class="id">'.$data['id'].'</td></tr>';
             }
@@ -129,6 +130,7 @@ include "includes/views/layout/header.php";
                     </thead></table>';
          }
             require 'modals/manifest.modal.php';
+            require 'modals/dashboard.modal.php';
 
             ?>
         </div>

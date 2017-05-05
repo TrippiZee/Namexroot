@@ -181,6 +181,9 @@ $(document).ready(function() {
 
     $("#outlyingCheckbox").click(function(){
         $("#outlyingInput").toggle(this.checked);
+        if($("#outlyingInput").prop("checked")){
+            $("#outlyingInput").val('');
+        }
     });
     $("#saturdayCheckbox").click(function(){
         $("#saturdayInput").toggle(this.checked);

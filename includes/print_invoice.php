@@ -53,10 +53,8 @@ use Carbon\Carbon;
 
 }
 
-    $row_height = 4;
-    $y_axis = 60;
+    $y_axis = 104;
     $today = Carbon::today()->toDateString();
-    $invNumber = 123456789;
     $docFee = $docCount * 95;
 
     $pdf = new PDF();
@@ -158,36 +156,40 @@ $pdf->SetY(101);
 $pdf->SetX(155);
 $pdf->Cell(50,3,'R '.$fuelSurcharge,0,0,'C');
 if ($vat){
-    $pdf->SetY(104);
+    $pdf->SetY($y_axis);
     $pdf->SetX(80);
     $pdf->Cell(50,3,'VAT',0,0,'C');
-    $pdf->SetY(104);
+    $pdf->SetY($y_axis);
     $pdf->SetX(155);
     $pdf->Cell(50,3,'R '.$vat,0,0,'C');
+    $y_axis = $y_axis+3;
 }
 if ($insurance){
-    $pdf->SetY(107);
+    $pdf->SetY($y_axis);
     $pdf->SetX(80);
     $pdf->Cell(50,3,'INSURANCE',0,0,'C');
-    $pdf->SetY(107);
+    $pdf->SetY($y_axis);
     $pdf->SetX(155);
     $pdf->Cell(50,3,'R '.$insurance,0,0,'C');
-}
-if ($saturday){
-    $pdf->SetY(110);
-    $pdf->SetX(80);
-    $pdf->Cell(50,3,'SATURDAY DELIVERIES',0,0,'C');
-    $pdf->SetY(110);
-    $pdf->SetX(155);
-    $pdf->Cell(50,3,'R '.$saturday,0,0,'C');
+    $y_axis = $y_axis+3;
 }
 if ($outlying){
-    $pdf->SetY(113);
+    $pdf->SetY($y_axis);
     $pdf->SetX(80);
     $pdf->Cell(50,3,'OUTLYING AREAS',0,0,'C');
-    $pdf->SetY(113);
+    $pdf->SetY($y_axis);
     $pdf->SetX(155);
     $pdf->Cell(50,3,'R '.$outlying,0,0,'C');
+    $y_axis = $y_axis+3;
+}
+if ($saturday){
+    $pdf->SetY($y_axis);
+    $pdf->SetX(80);
+    $pdf->Cell(50,3,'SATURDAY DELIVERIES',0,0,'C');
+    $pdf->SetY($y_axis);
+    $pdf->SetX(155);
+    $pdf->Cell(50,3,'R '.$saturday,0,0,'C');
+    $y_axis = $y_axis+3;
 }
 
     $pdf->Output();
