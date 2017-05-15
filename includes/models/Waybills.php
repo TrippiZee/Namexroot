@@ -2,6 +2,7 @@
 
 namespace Includes\Models;
 
+use Includes\Controllers\WaybillController;
 use PDO;
 use Includes\App;
 use Monolog\Logger;
@@ -93,6 +94,7 @@ class Waybills{
 
         $logger = new Logger('debugLog');
         $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
+        $waybillController = new WaybillController();
 
         $pdo = App::get('pdo');
 
@@ -151,6 +153,13 @@ class Waybills{
             $pdo->rollBack();
             echo $ex->getMessage();
         }
+
+        $calculatedVolume = $waybillController->calculateVolume($waybill_no);
+
+        $stmnt = $pdo->prepare("UPDATE manifest_details SET volume = :volume WHERE waybill_no = :waybill_no");
+        $stmnt->bindValue(':volume',$calculatedVolume,PDO::PARAM_INT);
+        $stmnt->bindValue(':waybill_no',$waybill_no,PDO::PARAM_STR);
+        $stmnt->execute();
 
         if ($_POST['createWaybill']) {
             redirect_to('manifest?id=' . $id);
@@ -218,15 +227,13 @@ class Waybills{
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_CLASS);
         echo json_encode($data);
-
-//        return $stmt->fetchAll();
     }
 
     public function getWaybillDetails(){
         $id = $_POST['waybillId'];
         $pdo = App::get('pdo');
 
-        $stmt = $pdo->prepare("SELECT waybill_no,qty,weight,type,area FROM manifest_details WHERE id = :id");
+        $stmt = $pdo->prepare("SELECT waybill_no,qty,weight,volume,type,area FROM manifest_details WHERE id = :id");
         $stmt->bindValue('id',$id,PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS);
@@ -240,6 +247,5 @@ class Waybills{
 
         $statement->execute();
         redirect_to('manifest');
-
     }
 }

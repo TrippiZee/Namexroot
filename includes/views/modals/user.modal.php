@@ -12,7 +12,7 @@
                 <h4 class="modal-title">Add New User</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="user" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Username</label>
@@ -75,7 +75,7 @@
                 <h4 class="modal-title">Edit User</h4>
             </div>
             <div class="modal-body">
-                <form action="#" method="post">
+                <form action="user" method="post">
 
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Username</label>
@@ -102,9 +102,9 @@
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-4">
                             <select name="role">
-                                <option selected disabled value="<?php echo htmlentities($user['role'])?>"><?php echo htmlentities($user['role'])?></option>
+                                <option selected value="<?php echo htmlentities($user['role'])?>"><?php echo htmlentities($user['role'])?></option>
                                 <?php foreach($roles as $key => $value){?>
-                                    <option value="<?php echo $value->role;?>"><?php echo $value->role;?></option>
+                                    <option value="<?php echo $value->role;?>"><?php echo $value->role?></option>
                                     <?php
                                 }
                                 ?>

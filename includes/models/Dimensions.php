@@ -19,12 +19,12 @@ class Dimensions {
 
     public $height;
 
-    public function calculateFreight(){
+    public function calculateFreight($waybill_no){
 
         $logger = new Logger('debugLog');
         $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
 
-        $waybillNo = $_POST['waybillNo'];
+        $waybillNo = $waybill_no;
         $pdo = App::get('pdo');
 
         $stmt = $pdo->prepare("SELECT * FROM dimensions WHERE waybill_no = :waybill_no");

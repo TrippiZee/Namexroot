@@ -25,8 +25,6 @@ class Services{
     }
     public function getRates($area,$type)
     {
-        $logger = new Logger('debugLog');
-        $logger->pushHandler(new StreamHandler(__DIR__ . '../../debug.log', Logger::DEBUG));
         $pdo = App::get('pdo');
         if ($area == 'WINDHOEK') {
             $statement = $pdo->prepare('SELECT type, initial_rate_windhoek as initial, over_rate_windhoek as over FROM services WHERE type = :type');

@@ -3,6 +3,9 @@
 namespace Includes\Models;
 use PDO;
 use Includes\App;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 
 class User
 {
@@ -35,7 +38,7 @@ class User
 
         $safe_password = md5($password);
 
-        $statement = $pdo->prepare("INSERT INTO users (username, password, name, surname, role) VALUES (:user_name, :password, :name, :surname, :role)");
+        $statement = $pdo->prepare("INSERT INTO users (username, password, name, surname, role) VALUES (:userName, :password, :name, :surname, :role)");
         $statement->bindValue(':userName',$userName,PDO::PARAM_STR);
         $statement->bindValue(':password',$safe_password,PDO::PARAM_STR);
         $statement->bindValue(':name',$name,PDO::PARAM_STR);
@@ -47,6 +50,10 @@ class User
     }
 
     public function editUser(){
+        $logger = new Logger('debugLog');
+        $logger->pushHandler(new StreamHandler(__DIR__.'../../debug.log', Logger::DEBUG));
+//        $logger->info("EditUser POST Array",print_r($_POST,true));
+
         $pdo = App::get('pdo');
         $userName = strtoupper($_POST['username']);
         $password = $_POST['password'];
@@ -57,7 +64,7 @@ class User
         $safe_password = md5($password);
 
 
-        $statement = $pdo->prepare("UPDATE users SET username = userName, password = :password, name = :name, surname = :surname, role = :role WHERE id = :post_id LIMIT 1");
+        $statement = $pdo->prepare("UPDATE users SET username = :userName, password = :password, name = :name, surname = :surname, role = :role WHERE id = :post_id LIMIT 1");
         $statement->bindValue(':userName',$userName,PDO::PARAM_STR);
         $statement->bindValue(':password',$safe_password,PDO::PARAM_STR);
         $statement->bindValue(':name',$name,PDO::PARAM_STR);

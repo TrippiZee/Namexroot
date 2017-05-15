@@ -191,5 +191,17 @@ if ($saturday){
     $pdf->Cell(50,3,'R '.$saturday,0,0,'C');
     $y_axis = $y_axis+3;
 }
+$pdf->SetY(233);
+$pdf->SetX(80);
+$pdf->Cell(50,3,'WEIGHT:',0,0,'C');
+$pdf->SetY(233);
+$pdf->SetX(155);
+$pdf->Cell(50,3,$waybill[0]->weight,0,0,'C');
+$pdf->SetY(236);
+$pdf->SetX(80);
+$pdf->Cell(50,3,'VOLUME:',0,0,'C');
+$pdf->SetY(236);
+$pdf->SetX(155);
+$pdf->Cell(50,3,$waybill[0]->volume,0,0,'C');
 
     $pdf->Output();

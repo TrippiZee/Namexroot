@@ -4,6 +4,8 @@ namespace Includes\Controllers;
 use Includes\App;
 use Includes\Models\User;
 use Includes\Models\UserRole;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 
 class UserController{
