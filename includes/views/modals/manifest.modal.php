@@ -18,11 +18,11 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Date</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control date" name="date" value="">
+                            <input type="text" class="form-control date" name="date" value="<?php echo date("Y-m-d")?>" readonly>
                         </div>
                         <label for="date" class="col-sm-2 col-form-label">Manifest Number</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="manifest_no" value="">
+                            <input type="text" class="form-control" name="manifest_no" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
