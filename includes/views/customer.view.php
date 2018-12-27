@@ -56,7 +56,7 @@ include "includes/views/layout/header.php";
         }
         else {
             echo '<h2>All Customers:</h2>';
-            echo '<table class="table table-striped dataTable customers">
+            echo '<table class="table row-border dataTable customers">
                     <thead>
                     <tr><th>Name</th><th>Account Number</th><th>Address</th><th>City</th><th>Country</th></tr>
                     </thead></table>';

@@ -196,7 +196,7 @@ body {
     position: fixed;
     top: 50px;
     left: 0;
-    width: 105px;
+    width: 125px;
     background:linear-gradient(to left, #e0e0e0, #666666);
     overflow: hidden;
     height: 100%;
@@ -212,9 +212,9 @@ body {
 
 #sidemenu li{
     display: block;
-    text-align: center;
+    text-align: left;
     /*background:url("../img/green_arrow.png") no-repeat right;*/
-    width: 105px;
+    width: 125px;
     padding: 10px 0 10px 0;
     font-size: 1.2em;
 }
@@ -271,6 +271,7 @@ li.active {
     /*width: 1024px;*/
     height: auto;
     margin: 0 auto;
+
 }
 
 #table th{
@@ -347,8 +348,13 @@ table.dataTable{
     padding-right: 20px;
 }
 table.dataTable.table-striped > tbody > tr:nth-child(2n+1) {
-    background-color: #666;
+    background-color: #888;
+
     /*color: #69BE28;*/
+}
+
+table.dataTable.table-striped > tbody > tr{
+    border: 1px solid #000000;
 }
 table.dataTable tbody tr a {
     color: #69BE28;
@@ -446,4 +452,8 @@ table.dataTable tbody tr a {
 }
 .paging_numbers_simple{
     color: #000;
+}
+
+.glyphicon {
+    padding-right: 5px;
 }
