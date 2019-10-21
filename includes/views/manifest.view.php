@@ -131,7 +131,6 @@ include "includes/views/layout/header.php";
          }
             require 'modals/manifest.modal.php';
             require 'modals/dashboard.modal.php';
-
             ?>
         </div>
     </div>

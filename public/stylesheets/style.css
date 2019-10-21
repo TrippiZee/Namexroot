@@ -192,6 +192,22 @@ body {
     /*margin-left: 130px;*/
 }
 
+.dashboardTaskList {
+    margin-left: 40px;
+    display: block;
+    border: 1px lightgray solid;
+    padding:10px 5px 50px 5px;
+}
+
+.dtlh {
+    padding-bottom: 20px;
+}
+
+.menubutton
+{
+    padding-right: 30px;
+}
+
 #sidemenu {
     position: fixed;
     top: 50px;
@@ -263,8 +279,8 @@ li.active {
     font-weight: bold;
     color: #69BE28;
     text-shadow: 1px 1px 2px black, 0 0 25px #2ECC71, 0 0 5px green;
-
 }
+
 
 #table {
     display: block;

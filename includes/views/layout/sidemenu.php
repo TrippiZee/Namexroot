@@ -12,7 +12,7 @@
                 <?php
                 if (getuserfield('role') == 'ADMIN'){
                     echo '<li><a href="reports"><i class="glyphicon glyphicon-print"></i>Reports</a></li>';
-                    echo '<li><a href="costing"><i class="glyphicon glyphicon-usd"></i>Rates</a></li>';
+                   // echo '<li><a href="costing"><i class="glyphicon glyphicon-usd"></i>Rates</a></li>';
                     echo '<li><a href="user"><i class="glyphicon glyphicon-user"></i>User</a></li>';
                 }
                 ?>

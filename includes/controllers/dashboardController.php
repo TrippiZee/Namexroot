@@ -37,7 +37,7 @@ class DashboardController{
         $allAreas = $area->getAreas();
 
 
-        return view('dashboard',['date'=>$currentManifests,'currentDay'=>$day,'services'=>$getServices,'customers'=>$customerSelect,'areas'=>$allAreas]);
+        return view('dashboardlist',['date'=>$currentManifests,'currentDay'=>$day,'services'=>$getServices,'customers'=>$customerSelect,'areas'=>$allAreas]);
 //        return view('dashboard');
     }
 

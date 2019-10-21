@@ -17,7 +17,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Company Name</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" required="required">
                         </div>
                         <label for="acc_no" class="col-sm-2 col-form-label">Account Number</label>
                         <div class="col-sm-4">

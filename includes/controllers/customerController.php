@@ -66,6 +66,7 @@ class CustomerController {
         $model = new Customers();
 
         if (isset($_POST['add'])) {
+
             $model->addCustomer();
         }
 
